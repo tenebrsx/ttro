@@ -1,5 +1,5 @@
-import React from 'react';
 import { Mail, MapPin, MessageCircle, Clock, Heart } from 'lucide-react';
+import ContactPageForm from '../components/ContactPageForm';
 
 const Contact = () => {
   return (
@@ -55,6 +55,13 @@ const Contact = () => {
               <p className="text-mocha/70 font-karla">Santo Domingo, RD</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-20 bg-cream/30">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ContactPageForm />
         </div>
       </section>
 
