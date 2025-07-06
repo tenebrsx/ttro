@@ -5,14 +5,43 @@ interface AnimationProps {
   children: ReactNode;
   className?: string;
   delay?: number;
+  direction?: 'up' | 'down' | 'left' | 'right';
 }
 
 // Fade in animation
-export const FadeIn = ({ children, className = '', delay = 0 }: AnimationProps) => {
+export const FadeIn = ({ children, className = '', delay = 0, direction = 'up' }: AnimationProps) => {
+  const getInitialProps = () => {
+    switch (direction) {
+      case 'up':
+        return { opacity: 0, y: 30 };
+      case 'down':
+        return { opacity: 0, y: -30 };
+      case 'left':
+        return { opacity: 0, x: -30 };
+      case 'right':
+        return { opacity: 0, x: 30 };
+      default:
+        return { opacity: 0 };
+    }
+  };
+
+  const getAnimateProps = () => {
+    switch (direction) {
+      case 'up':
+      case 'down':
+        return { opacity: 1, y: 0 };
+      case 'left':
+      case 'right':
+        return { opacity: 1, x: 0 };
+      default:
+        return { opacity: 1 };
+    }
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={getInitialProps()}
+      animate={getAnimateProps()}
       transition={{ duration: 0.8, delay }}
       className={className}
     >

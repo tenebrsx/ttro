@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
+import SocialButtonsGroup from './components/SocialButtonsGroup';
 import ScrollManager from './components/ScrollManager';
 import ScrollTestUtils from './components/ScrollTestUtils';
 import Home from './pages/Home';
@@ -28,7 +28,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        <WhatsAppButton />
+        <SocialButtonsGroup />
         <ScrollTestUtils />
       </div>
     </Router>

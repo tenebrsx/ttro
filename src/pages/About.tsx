@@ -1,5 +1,5 @@
-import React from 'react';
 import { Heart, Clock, Award, Users } from 'lucide-react';
+import PageTransition from '../components/PageTransition';
 
 const About = () => {
   const values = [
@@ -26,7 +26,8 @@ const About = () => {
   ];
 
   return (
-    <div className="pt-16">
+    <PageTransition>
+      <div className="pt-16">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-cream to-white bg-texture">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -157,6 +158,7 @@ const About = () => {
         </div>
       </section>
     </div>
+    </PageTransition>
   );
 };
 

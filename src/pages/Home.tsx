@@ -5,20 +5,21 @@ import TestimonialsPreview from '../components/TestimonialsPreview';
 import FAQ from '../components/FAQ';
 import HomeContactSection from '../components/HomeContactSection';
 import EmotionalStorySection from '../components/EmotionalStorySection';
-import StickyInstagramButton from '../components/StickyInstagramButton';
+import InstagramCarousel from '../components/InstagramCarousel';
+import PageTransition from '../components/PageTransition';
 
 const Home = () => {
   return (
-    <>
+    <PageTransition>
       <Hero />
       <AboutPreview />
       <FeaturedDesserts />
       <EmotionalStorySection />
       <TestimonialsPreview />
+      <InstagramCarousel />
       <FAQ />
       <HomeContactSection />
-      <StickyInstagramButton />
-    </>
+    </PageTransition>
   );
 };
 

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Instagram } from 'lucide-react';
+import PageTransition from '../components/PageTransition';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -94,7 +95,8 @@ const Gallery = () => {
   };
 
   return (
-    <div className="pt-16">
+    <PageTransition>
+      <div className="pt-16">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-cream to-white bg-texture">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -234,6 +236,7 @@ const Gallery = () => {
         </div>
       )}
     </div>
+    </PageTransition>
   );
 };
 

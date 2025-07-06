@@ -74,8 +74,8 @@ const Menu = () => {
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-creamy-beige to-cream overflow-hidden">
+        {/* Hero Section */}
+        <section className="relative py-20 bg-gradient-to-br from-creamy-beige to-cream overflow-hidden">
         <GrainTexture className="opacity-20" />
         
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -244,7 +244,7 @@ const Menu = () => {
           </FadeInUp>
         </div>
       </section>
-    </div>
+      </div>
   );
 };
 
