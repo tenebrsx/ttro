@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Eye, ShoppingBag, Plus } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 import {
   formatPriceFrom,
@@ -108,23 +108,6 @@ const FeaturedDesserts = () => {
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                {/* Floating Action Buttons */}
-                <div className="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
-                  <Link
-                    to={`/product/${dessert.id}`}
-                    className="bg-white/90 backdrop-blur-sm text-mocha p-2 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-200"
-                  >
-                    <Eye className="w-4 h-4" />
-                  </Link>
-                  <motion.button
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleAddToCart(dessert)}
-                    className="bg-dusty-rose text-white p-2 rounded-full shadow-lg hover:bg-mocha hover:scale-110 transition-all duration-200"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </motion.button>
-                </div>
 
                 {/* Popularity Badge */}
                 {dessert.popularity === "bestseller" && (
