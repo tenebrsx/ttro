@@ -1,30 +1,41 @@
-import { Heart, Clock, Award, Users } from 'lucide-react';
-import PageTransition from '../components/PageTransition';
-import { FadeIn, StaggerChildren, StaggerChild } from '../components/animations/AnimationComponents';
-import { HandwrittenAccent, HandDrawnDivider } from '../components/animations/TextureComponents';
+import { Heart, Clock, Award, Users } from "lucide-react";
+import PageTransition from "../components/PageTransition";
+import {
+  FadeIn,
+  StaggerChildren,
+  StaggerChild,
+} from "../components/animations/AnimationComponents";
+import {
+  HandwrittenAccent,
+  HandDrawnDivider,
+} from "../components/animations/TextureComponents";
 
 const About = () => {
   const values = [
     {
       icon: Heart,
       title: "Amor en Cada Migaja",
-      description: "Porque los mejores sabores nacen del corazón, no de las prisas. Cada postre lleva mi cariño y dedicación."
+      description:
+        "Porque los mejores sabores nacen del corazón, no de las prisas. Cada postre lleva mi cariño y dedicación.",
     },
     {
       icon: Clock,
       title: "Tradición que Abraza",
-      description: "Recetas que mi abuela me susurraba mientras yo lamía la cuchara, ahora reinventadas con mi toque personal."
+      description:
+        "Recetas que mi abuela me susurraba mientras yo lamía la cuchara, ahora reinventadas con mi toque personal.",
     },
     {
       icon: Award,
       title: "Solo lo Mejor",
-      description: "Ingredientes que hablan por sí solos: vainilla de Madagascar, chocolate belga, frutas del mercado dominical."
+      description:
+        "Ingredientes que hablan por sí solos: vainilla de Madagascar, chocolate belga, frutas del mercado dominical.",
     },
     {
       icon: Users,
       title: "Hecho Para Ti",
-      description: "Tu historia es única, y tu postre también debe serlo. Creamos juntos algo que refleje tu momento especial."
-    }
+      description:
+        "Tu historia es única, y tu postre también debe serlo. Creamos juntos algo que refleje tu momento especial.",
+    },
   ];
 
   return (
@@ -36,20 +47,25 @@ const About = () => {
             <FadeIn>
               <div className="flex items-center justify-center mb-6">
                 <div className="w-16 h-px bg-dusty-rose/40"></div>
-                <span className="mx-4 text-sm font-source-serif text-dusty-rose/70 uppercase tracking-wider">Mi Historia</span>
+                <span className="mx-4 text-sm font-source-serif text-dusty-rose/70 uppercase tracking-wider">
+                  Mi Historia
+                </span>
                 <div className="w-16 h-px bg-dusty-rose/40"></div>
               </div>
-              
+
               <h1 className="text-4xl sm:text-5xl font-playfair text-dark-cocoa mb-6">
                 Donde Cada Dulce
-                <span className="block text-dusty-rose italic">Cuenta una Historia</span>
+                <span className="block text-dusty-rose italic">
+                  Cuenta una Historia
+                </span>
               </h1>
-              
+
               <HandDrawnDivider className="mb-8" />
-              
+
               <p className="text-lg text-mocha/70 leading-relaxed font-source-serif font-light max-w-2xl mx-auto">
-                Soy Rosa, y esta es la historia de cómo transformé domingos de nostalgia 
-                en una pasión que endulza los momentos más preciados de la vida.
+                Soy Rosa, y esta es la historia de cómo transformé domingos de
+                nostalgia en una pasión que endulza los momentos más preciados
+                de la vida.
               </p>
             </FadeIn>
           </div>
@@ -61,9 +77,9 @@ const About = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <FadeIn direction="left">
                 <div className="relative">
-                  <img 
-                    src="https://images.pexels.com/photos/3992204/pexels-photo-3992204.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop" 
-                    alt="Rosa en su cocina trabajando con luz natural" 
+                  <img
+                    src="/images/chef-photo.png"
+                    alt="Rosa y su equipo - el alma de Cucinanostrard"
                     className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-gentle"
                   />
                   <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-dusty-rose/20 rounded-full blur-xl"></div>
@@ -74,28 +90,34 @@ const About = () => {
               <FadeIn direction="right">
                 <div>
                   <h2 className="text-3xl font-playfair text-dark-cocoa mb-6">
-                    Hola, soy Rosa, 
-                    <span className="block text-dusty-rose italic">el alma de cada dulce</span>
+                    Hola, soy Rosa,
+                    <span className="block text-dusty-rose italic">
+                      el alma de cada dulce
+                    </span>
                   </h2>
-                  
+
                   <div className="space-y-6 text-mocha/80 text-lg leading-relaxed font-source-serif font-light">
                     <p>
-                      Todo comenzó en la cocina de mi abuela, donde los domingos se llenaban del aroma 
-                      a canela y vainilla. Ahí aprendí que un postre no es solo azúcar y harina—es 
-                      cariño que toma forma, es memoria que se puede saborear.
+                      Todo comenzó en la cocina de mi abuela, donde los domingos
+                      se llenaban del aroma a canela y vainilla. Ahí aprendí que
+                      un postre no es solo azúcar y harina—es cariño que toma
+                      forma, es memoria que se puede saborear.
                     </p>
-                    
+
                     <p>
-                      Hoy, en mi propia cocina, cada ingrediente es elegido con el mismo amor que ella 
-                      me enseñó. No uso atajos ni sabores artificiales, porque creo que lo auténtico 
-                      se siente en cada bocado. Trabajo con mis manos, sigo el ritmo de las estaciones, 
-                      y dejo que el tiempo haga su magia.
+                      Hoy, en mi propia cocina, cada ingrediente es elegido con
+                      el mismo amor que ella me enseñó. No uso atajos ni sabores
+                      artificiales, porque creo que lo auténtico se siente en
+                      cada bocado. Trabajo con mis manos, sigo el ritmo de las
+                      estaciones, y dejo que el tiempo haga su magia.
                     </p>
-                    
+
                     <p>
-                      Para mí, cada pedido es personal. Ya sea una torta de cumpleaños que dibuje 
-                      sonrisas o unos petit fours para una reunión íntima, pongo mi corazón en crear 
-                      dulces que sepan a hogar, pero con esa elegancia que hace especial el momento.
+                      Para mí, cada pedido es personal. Ya sea una torta de
+                      cumpleaños que dibuje sonrisas o unos petit fours para una
+                      reunión íntima, pongo mi corazón en crear dulces que sepan
+                      a hogar, pero con esa elegancia que hace especial el
+                      momento.
                     </p>
                   </div>
 
@@ -103,10 +125,14 @@ const About = () => {
                     <blockquote className="text-2xl font-playfair text-dusty-rose italic text-center">
                       <HandwrittenAccent>
                         &ldquo;No solo horneo postres—
-                        <span className="block mt-1">creo pequeños momentos de felicidad&rdquo;</span>
+                        <span className="block mt-1">
+                          creo pequeños momentos de felicidad&rdquo;
+                        </span>
                       </HandwrittenAccent>
                     </blockquote>
-                    <cite className="block text-center text-sm text-mocha/60 mt-3 font-source-serif">- Rosa</cite>
+                    <cite className="block text-center text-sm text-mocha/60 mt-3 font-source-serif">
+                      - Rosa
+                    </cite>
                   </div>
                 </div>
               </FadeIn>
@@ -121,7 +147,9 @@ const About = () => {
               <div className="text-center mb-16">
                 <h2 className="text-3xl font-playfair text-dark-cocoa mb-6">
                   Lo que Hace Especial
-                  <span className="block text-dusty-rose italic">Cada Creación</span>
+                  <span className="block text-dusty-rose italic">
+                    Cada Creación
+                  </span>
                 </h2>
                 <HandDrawnDivider />
               </div>
@@ -154,25 +182,32 @@ const About = () => {
               <h2 className="text-3xl font-playfair text-dark-cocoa mb-8">
                 Mi Filosofía Dulce
               </h2>
-              
+
               <div className="space-y-8 text-mocha/80 text-lg leading-relaxed font-source-serif font-light">
                 <p>
-                  Creo firmemente que los mejores postres nacen de la alegría y la intención. 
-                  Cada ingrediente es elegido con cuidado, cada técnica honrada con paciencia, 
-                  y cada creación está impregnada del amor que hace que la comida sea realmente nutritiva para el alma.
+                  Creo firmemente que los mejores postres nacen de la alegría y
+                  la intención. Cada ingrediente es elegido con cuidado, cada
+                  técnica honrada con paciencia, y cada creación está impregnada
+                  del amor que hace que la comida sea realmente nutritiva para
+                  el alma.
                 </p>
-                
+
                 <p>
-                  Las estaciones guían mi menú—fresas jugosas en verano, especias cálidas en invierno, 
-                  y los cítricos brillantes de la primavera. Compro local cuando es posible, 
-                  apoyando a nuestra comunidad mientras aseguro que los sabores más frescos lleguen a tu mesa.
+                  Las estaciones guían mi menú—fresas jugosas en verano,
+                  especias cálidas en invierno, y los cítricos brillantes de la
+                  primavera. Compro local cuando es posible, apoyando a nuestra
+                  comunidad mientras aseguro que los sabores más frescos lleguen
+                  a tu mesa.
                 </p>
-                
+
                 <p>
-                  Lo más importante es que veo cada pedido como una oportunidad de ser parte de tu historia. 
-                  Ya sea una celebración íntima de cumpleaños o una boda soñada, mis postres están diseñados 
-                  para complementar tu momento, no opacarlo. 
-                  <HandwrittenAccent className="text-dusty-rose">Porque al final, lo que importa es la sonrisa.</HandwrittenAccent>
+                  Lo más importante es que veo cada pedido como una oportunidad
+                  de ser parte de tu historia. Ya sea una celebración íntima de
+                  cumpleaños o una boda soñada, mis postres están diseñados para
+                  complementar tu momento, no opacarlo.
+                  <HandwrittenAccent className="text-dusty-rose">
+                    Porque al final, lo que importa es la sonrisa.
+                  </HandwrittenAccent>
                 </p>
               </div>
             </FadeIn>
