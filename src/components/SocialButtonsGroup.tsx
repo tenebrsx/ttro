@@ -1,16 +1,22 @@
-import { motion } from 'framer-motion';
-import { Instagram, MessageCircle } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Instagram, MessageCircle } from "lucide-react";
 
 const SocialButtonsGroup = () => {
   const handleWhatsApp = () => {
     const phoneNumber = "18095550123";
-    const message = "¡Hola! Me interesa conocer más sobre sus postres artesanales.";
+    const message =
+      "¡Hola! Me interesa conocer más sobre sus postres artesanales.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
   const handleInstagram = () => {
-    window.open('https://instagram.com/cucinanostrard', '_blank', 'noopener,noreferrer');
+    window.open(
+      "https://instagram.com/cucinanostrard",
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   return (
@@ -32,7 +38,7 @@ const SocialButtonsGroup = () => {
           y: {
             duration: 2,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           },
         }}
       >
@@ -42,7 +48,7 @@ const SocialButtonsGroup = () => {
           aria-label="Síguenos en Instagram"
         >
           <Instagram className="w-6 h-6" />
-          
+
           {/* Soft pulse effect */}
           <motion.div
             className="absolute inset-0 bg-dusty-rose/30 rounded-full"
@@ -53,7 +59,7 @@ const SocialButtonsGroup = () => {
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: 'easeInOut',
+              ease: "easeInOut",
             }}
           />
         </button>
@@ -61,7 +67,7 @@ const SocialButtonsGroup = () => {
         {/* Expandable text */}
         <motion.div
           initial={{ width: 0, opacity: 0 }}
-          whileHover={{ width: 'auto', opacity: 1 }}
+          whileHover={{ width: "auto", opacity: 1 }}
           transition={{ duration: 0.3 }}
           className="overflow-hidden absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full pr-3"
         >
@@ -85,7 +91,7 @@ const SocialButtonsGroup = () => {
           y: {
             duration: 2.5,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           },
         }}
       >
@@ -95,7 +101,7 @@ const SocialButtonsGroup = () => {
           aria-label="Contactar por WhatsApp"
         >
           <MessageCircle className="w-6 h-6" />
-          
+
           {/* Soft pulse effect */}
           <motion.div
             className="absolute inset-0 bg-green-500/30 rounded-full"
@@ -106,7 +112,7 @@ const SocialButtonsGroup = () => {
             transition={{
               duration: 2.5,
               repeat: Infinity,
-              ease: 'easeInOut',
+              ease: "easeInOut",
             }}
           />
         </button>
@@ -114,7 +120,7 @@ const SocialButtonsGroup = () => {
         {/* Expandable text */}
         <motion.div
           initial={{ width: 0, opacity: 0 }}
-          whileHover={{ width: 'auto', opacity: 1 }}
+          whileHover={{ width: "auto", opacity: 1 }}
           transition={{ duration: 0.3 }}
           className="overflow-hidden absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full pr-3"
         >

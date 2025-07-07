@@ -18,11 +18,21 @@
 - **Publish directory**: `dist`
 - **Node version**: 18 (configured in netlify.toml)
 
+### Pre-Deployment Checklist
+1. Configure EmailJS service (see `EMAIL_SETUP.md`)
+2. Replace placeholder images in `/public/images/instagram/`
+3. Update WhatsApp phone number in `src/components/WhatsAppButton.tsx`
+4. Verify all links and contact information
+5. Test the contact form submission
+
 ## Files Added for Deployment
 - `netlify.toml` - Netlify configuration with redirects for SPA routing
 - `public/_redirects` - Backup redirect configuration
 - `ErrorBoundary.tsx` - Error handling component
 - Updated `vite.config.ts` - Optimized for deployment
+- Enhanced SEO meta tags in `index.html`
+- Email service integration with EmailJS
+- Improved image handling with fallbacks
 
 ## Network Access Fix
 The blank page issue was caused by:

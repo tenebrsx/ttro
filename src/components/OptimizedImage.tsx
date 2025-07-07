@@ -7,6 +7,8 @@ interface OptimizedImageProps {
   className?: string;
   aspectRatio?: 'square' | 'portrait' | 'landscape';
   priority?: boolean;
+  onError?: (e: React.SyntheticEvent<HTMLImageElement, Event>) => void;
+  fallbackSrc?: string;
 }
 
 const OptimizedImage: React.FC<OptimizedImageProps> = ({
@@ -14,7 +16,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   alt,
   className = '',
   aspectRatio = 'landscape',
-  priority = false
+  priority = false,
+  onError,
+  fallbackSrc
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -29,21 +33,24 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     setIsLoading(false);
   };
 
-  const handleError = () => {
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     setIsLoading(false);
     setHasError(true);
+    if (onError) {
+      onError(e);
+    }
   };
 
   return (
     <div className={`relative overflow-hidden ${aspectRatioClasses[aspectRatio]} ${className}`}>
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-sage/10">
+        <div className="absolute inset-0 flex items-center justify-center bg-dusty-rose/10">
           <LoadingSpinner size="medium" />
         </div>
       )}
       
       {hasError ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-sage/10">
+        <div className="absolute inset-0 flex items-center justify-center bg-dusty-rose/10">
           <div className="text-center text-mocha/50">
             <p className="text-sm">Error al cargar imagen</p>
           </div>

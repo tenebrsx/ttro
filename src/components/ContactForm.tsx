@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, Calendar, Users, Heart, MessageCircle } from 'lucide-react';
 import Button from './Button';
+import { sendEmail } from '../services/emailService';
 
 interface ContactFormData {
   name: string;
@@ -40,27 +41,59 @@ const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      // Add submission timestamp
+      const submissionData = {
+        ...formData,
+        submittedAt: new Date().toISOString()
+      };
+      
+      // Map form data to EmailTemplateData format
+      const emailData = {
+        name: submissionData.name,
+        email: submissionData.email,
+        phone: submissionData.phone,
+        requestType: submissionData.eventType,
+        eventDate: submissionData.eventDate,
+        guestCount: submissionData.guests,
+        message: submissionData.message,
+        submittedAt: submissionData.submittedAt,
+        allergies: submissionData.allergies,
+        budget: submissionData.budget
+      };
+      
+      // Send email using the email service
+      const success = await sendEmail(emailData);
+      
       setLoading(false);
-      setSubmitted(true);
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setSubmitted(false);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          eventType: '',
-          eventDate: '',
-          guests: '',
-          budget: '',
-          message: '',
-          allergies: ''
-        });
-      }, 3000);
-    }, 2000);
+      
+      if (success) {
+        setSubmitted(true);
+        // Reset form after 3 seconds on success
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            eventType: '',
+            eventDate: '',
+            guests: '',
+            budget: '',
+            message: '',
+            allergies: ''
+          });
+        }, 3000);
+      } else {
+        // Handle error case
+        alert('Hubo un problema al enviar el formulario. Por favor, inténtelo de nuevo.');
+      }
+    } catch (error) {
+      console.error('Error in form submission:', error);
+      setLoading(false);
+      alert('Hubo un error al procesar su solicitud. Por favor, inténtelo de nuevo.');
+    }
   };
 
   if (submitted) {

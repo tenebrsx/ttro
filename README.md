@@ -14,9 +14,10 @@ A beautiful, modern website for Cucinanostrard, showcasing artisanal homemade de
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
 - **Instagram Integration**: Gallery connected to @cucinanostrard
 - **WhatsApp Contact**: Sticky button with pre-filled messages
-- **Contact Form**: Homepage inquiry form with validation
+- **Contact Form**: Homepage inquiry form with EmailJS integration
+- **Form Validation**: Comprehensive client-side validation
 - **Smooth Navigation**: Scroll management and React Router
-- **SEO Optimized**: Meta tags, semantic HTML, and accessibility
+- **SEO Optimized**: Meta tags, Open Graph, Twitter Cards, and accessibility
 
 ### 🎨 Design & UX
 - **Brand Identity**: Custom logo integration throughout
@@ -156,14 +157,23 @@ src/
 ### WhatsApp Integration
 Update the phone number in `src/components/WhatsAppButton.tsx`:
 ```typescript
-const phoneNumber = "18095550123"; // Replace with actual number
+const phoneNumber = "18095551234"; // Replace with actual number
 ```
+
+### Email Service (EmailJS)
+Follow the instructions in `EMAIL_SETUP.md` to configure EmailJS for the contact form. You'll need to:
+1. Create an EmailJS account
+2. Set up an email service
+3. Create an email template
+4. Update the configuration in `src/services/emailService.ts`
 
 ### Instagram Integration
 Update Instagram links in:
 - `src/components/Gallery.tsx`
 - `src/components/Footer.tsx`
 - `src/pages/Gallery.tsx`
+
+Replace placeholder images in `/public/images/instagram/` with actual content.
 
 ### Contact Information
 Update business details in:
@@ -174,13 +184,17 @@ Update business details in:
 ## 📊 Performance & SEO
 
 ### Optimization Features
-- **Lazy Loading**: Images load on demand
+- **Lazy Loading**: Images load on demand with OptimizedImage component
 - **Code Splitting**: Automatic chunk optimization
 - **Minification**: CSS and JS compression
 - **Tree Shaking**: Unused code elimination
+- **Image Fallbacks**: Error handling for failed image loads
 
 ### SEO Features
 - **Meta Tags**: Comprehensive HTML head optimization
+- **Open Graph**: Social media sharing optimization
+- **Twitter Cards**: Twitter-specific meta tags
+- **Canonical URLs**: Proper URL structure
 - **Semantic HTML**: Proper heading hierarchy
 - **Alt Text**: All images have descriptive text
 - **Schema Markup**: Ready for structured data

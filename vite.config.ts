@@ -1,21 +1,64 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
+    },
+  },
   server: {
     port: 3000,
-    host: '0.0.0.0', // Allow external connections
-    strictPort: false, // Allow fallback to other ports
-    open: true, // Open browser automatically
+    host: true,
+    strictPort: false,
+    open: false,
+    hmr: {
+      overlay: false,
+    },
   },
   preview: {
     port: 3000,
-    host: '0.0.0.0', // Allow external connections in preview mode
+    host: true,
+  },
+  build: {
+    outDir: "dist",
+    assetsDir: "assets",
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          router: ["react-router-dom"],
+          motion: ["framer-motion"],
+          icons: ["lucide-react"],
+        },
+      },
+    },
+    target: "esnext",
+    minify: "esbuild",
+    sourcemap: false,
   },
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    include: [
+      "react",
+      "react-dom",
+      "react-router-dom",
+      "framer-motion",
+      "lucide-react",
+    ],
+    exclude: [],
   },
-  base: '/', // Use absolute paths for deployment
+  define: {
+    "process.env.NODE_ENV": JSON.stringify(
+      process.env.NODE_ENV || "development",
+    ),
+  },
+  css: {
+    postcss: "./postcss.config.js",
+  },
+  base: "./",
+  publicDir: "public",
 });

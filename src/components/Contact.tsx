@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, MapPin, Send, MessageCircle, Heart } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,9 +22,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
     console.log('Form submitted:', formData);
-    // Reset form
     setFormData({
       name: '',
       email: '',
@@ -43,34 +41,33 @@ const Contact = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-6">
             <div className="w-16 h-px bg-sage/40"></div>
-            <span className="mx-4 text-sm font-karla text-sage/70 uppercase tracking-wider">Custom Orders</span>
+            <span className="mx-4 text-sm font-karla text-sage/70 uppercase tracking-wider">Creaciones Únicas</span>
             <div className="w-16 h-px bg-sage/40"></div>
           </div>
           
           <h2 className="text-4xl sm:text-5xl font-cormorant text-mocha mb-6 text-shadow-soft">
-            Let's Make Something Sweet Together
+            Convirtamos Tu Sueño en Realidad
           </h2>
           
           <div className="w-24 h-px bg-sage/40 mx-auto mb-6"></div>
           
           <p className="text-lg text-mocha/70 max-w-2xl mx-auto font-karla font-light leading-relaxed">
-            Share your vision and I'll help bring it to life. 
+            Cada pedido especial comienza con una conversación íntima sobre tu momento único.
             <span className="block mt-2 italic text-mocha/60">
-              Every custom order begins with a conversation about your special moment.
+              Porque los detalles perfectos nacen cuando dos corazones se encuentran.
             </span>
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Contact Info */}
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-cormorant text-mocha mb-6 text-shadow-soft">
-                Get in Touch
+                Conectemos Nuestros Corazones
               </h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center shadow-gentle">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4 group">
+                  <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center shadow-gentle group-hover:shadow-warm transition-all duration-300">
                     <Mail className="h-6 w-6 text-sage" />
                   </div>
                   <div>
@@ -79,8 +76,8 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center shadow-gentle">
+                <div className="flex items-center space-x-4 group">
+                  <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center shadow-gentle group-hover:shadow-warm transition-all duration-300">
                     <MessageCircle className="h-6 w-6 text-sage" />
                   </div>
                   <div>
@@ -89,42 +86,41 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center shadow-gentle">
+                <div className="flex items-center space-x-4 group">
+                  <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center shadow-gentle group-hover:shadow-warm transition-all duration-300">
                     <MapPin className="h-6 w-6 text-sage" />
                   </div>
                   <div>
-                    <p className="text-mocha font-medium font-karla">Based in</p>
-                    <p className="text-mocha/70 font-karla">Santo Domingo, DR</p>
+                    <p className="text-mocha font-medium font-karla">Ubicación</p>
+                    <p className="text-mocha/70 font-karla">Santo Domingo, RD</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-sage/10 shadow-gentle">
-              <h4 className="text-lg font-cormorant text-mocha mb-4 text-shadow-soft">
-                What to Expect
-              </h4>
-              <ul className="space-y-2 text-mocha/70 font-karla">
-                <li>• Personal consultation within 24 hours</li>
-                <li>• Custom dessert menu tailored to your event</li>
-                <li>• Transparent pricing with no hidden fees</li>
-                <li>• Minimum order: $30</li>
-                <li>• Custom cakes begin at $60</li>
-                <li>• Dessert tables start at $250</li>
-              </ul>
+            <div className="bg-sage/10 p-6 rounded-lg shadow-gentle">
+              <div className="flex items-center mb-4">
+                <Heart className="h-5 w-5 text-sage mr-2" />
+                <h4 className="text-lg font-cormorant text-mocha">Una Promesa Personal</h4>
+              </div>
+              <p className="text-mocha/70 font-karla font-light leading-relaxed">
+                Tu celebración será única, como tú. Cada detalle será cuidadosamente 
+                pensado para crear no solo un postre, sino una experiencia que perdure 
+                en el corazón de quienes amas.
+              </p>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div>
-            <div className="bg-white/40 backdrop-blur-sm p-8 rounded-2xl border border-sage/10 shadow-gentle">
-            <h3 className="text-2xl font-cormorant text-mocha mb-6 text-center text-shadow-soft">Send Me Your Vision</h3>
+          <div className="bg-white p-8 rounded-lg shadow-gentle">
+            <h3 className="text-2xl font-cormorant text-mocha mb-6 text-shadow-soft">
+              Cuéntame Tu Historia
+            </h3>
+            
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-mocha font-medium mb-2 font-karla">
-                    Your Name
+                  <label htmlFor="name" className="block text-sm font-medium text-mocha mb-2 font-karla">
+                    Tu Nombre *
                   </label>
                   <input
                     type="text"
@@ -133,13 +129,14 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-sage/20 rounded-xl focus:ring-2 focus:ring-sage/50 focus:border-sage/30 transition-all duration-300 bg-white/80 backdrop-blur-sm font-karla shadow-gentle"
+                    className="w-full px-4 py-3 border border-sage/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-all duration-300 font-karla"
+                    placeholder="¿Cómo te llamas?"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-mocha font-medium mb-2 font-karla">
-                    Email Address
+                  <label htmlFor="email" className="block text-sm font-medium text-mocha mb-2 font-karla">
+                    Email *
                   </label>
                   <input
                     type="email"
@@ -148,103 +145,37 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-sage/20 rounded-xl focus:ring-2 focus:ring-sage/50 focus:border-sage/30 transition-all duration-300 bg-white/80 backdrop-blur-sm font-karla shadow-gentle"
+                    className="w-full px-4 py-3 border border-sage/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-all duration-300 font-karla"
+                    placeholder="tu@email.com"
                   />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="phone" className="block text-mocha font-medium mb-2 font-karla">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-sage/20 rounded-xl focus:ring-2 focus:ring-sage/50 focus:border-sage/30 transition-all duration-300 bg-white/80 backdrop-blur-sm font-karla shadow-gentle"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="eventType" className="block text-mocha font-medium mb-2 font-karla">
-                    Event Type
-                  </label>
-                  <select
-                    id="eventType"
-                    name="eventType"
-                    value={formData.eventType}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-sage/20 rounded-xl focus:ring-2 focus:ring-sage/50 focus:border-sage/30 transition-all duration-300 bg-white/80 backdrop-blur-sm font-karla shadow-gentle"
-                  >
-                    <option value="">Select event type</option>
-                    <option value="birthday">Birthday</option>
-                    <option value="wedding">Wedding</option>
-                    <option value="anniversary">Anniversary</option>
-                    <option value="baby-shower">Baby Shower</option>
-                    <option value="corporate">Corporate Event</option>
-                    <option value="just-because">Just Because</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="eventDate" className="block text-mocha font-medium mb-2 font-karla">
-                    Event Date
-                  </label>
-                  <input
-                    type="date"
-                    id="eventDate"
-                    name="eventDate"
-                    value={formData.eventDate}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-sage/20 rounded-xl focus:ring-2 focus:ring-sage/50 focus:border-sage/30 transition-all duration-300 bg-white/80 backdrop-blur-sm font-karla shadow-gentle"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="guests" className="block text-mocha font-medium mb-2 font-karla">
-                    Number of Guests
-                  </label>
-                  <select
-                    id="guests"
-                    name="guests"
-                    value={formData.guests}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-sage/20 rounded-xl focus:ring-2 focus:ring-sage/50 focus:border-sage/30 transition-all duration-300 bg-white/80 backdrop-blur-sm font-karla shadow-gentle"
-                  >
-                    <option value="">Select number of guests</option>
-                    <option value="2-5">2-5 guests</option>
-                    <option value="6-10">6-10 guests</option>
-                    <option value="11-20">11-20 guests</option>
-                    <option value="21-50">21-50 guests</option>
-                    <option value="50+">50+ guests</option>
-                  </select>
                 </div>
               </div>
 
               <div>
-                <label htmlFor="style" className="block text-mocha font-medium mb-2 font-karla">
-                  Style or Theme (Optional)
+                <label htmlFor="eventType" className="block text-sm font-medium text-mocha mb-2 font-karla">
+                  Tipo de Celebración
                 </label>
-                <input
-                  type="text"
-                  id="style"
-                  name="style"
-                  value={formData.style}
+                <select
+                  id="eventType"
+                  name="eventType"
+                  value={formData.eventType}
                   onChange={handleChange}
-                  placeholder="Rustic, elegant, vintage, colorful..."
-                  className="w-full px-4 py-3 border border-sage/20 rounded-xl focus:ring-2 focus:ring-sage/50 focus:border-sage/30 transition-all duration-300 bg-white/80 backdrop-blur-sm font-karla shadow-gentle"
-                />
+                  className="w-full px-4 py-3 border border-sage/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-all duration-300 font-karla"
+                >
+                  <option value="">Selecciona tu celebración</option>
+                  <option value="cumpleanos">Cumpleaños</option>
+                  <option value="boda">Boda</option>
+                  <option value="aniversario">Aniversario</option>
+                  <option value="baby-shower">Baby Shower</option>
+                  <option value="graduacion">Graduación</option>
+                  <option value="corporativo">Evento Corporativo</option>
+                  <option value="otro">Otro</option>
+                </select>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-mocha font-medium mb-2 font-karla">
-                  Tell Me About Your Vision
+                <label htmlFor="message" className="block text-sm font-medium text-mocha mb-2 font-karla">
+                  Comparte Tu Visión
                 </label>
                 <textarea
                   id="message"
@@ -252,20 +183,19 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  placeholder="Share your inspiration, favorite flavors, dietary needs, or any special requests..."
-                  className="w-full px-4 py-3 border border-sage/20 rounded-xl focus:ring-2 focus:ring-sage/50 focus:border-sage/30 transition-all duration-300 bg-white/80 backdrop-blur-sm font-karla shadow-gentle resize-none"
-                ></textarea>
+                  className="w-full px-4 py-3 border border-sage/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-all duration-300 font-karla"
+                  placeholder="Cuéntame sobre tu celebración especial, tus sabores favoritos, alergias, inspiraciones... Todo lo que haga único este momento"
+                />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-sage text-cream px-8 py-4 rounded-xl text-lg hover:bg-mocha transition-all duration-500 transform hover:scale-105 shadow-gentle hover:shadow-soft flex items-center justify-center space-x-2 font-karla font-medium"
+                className="w-full bg-sage text-cream px-8 py-4 rounded-lg text-lg font-karla font-medium hover:bg-sage/90 transition-all duration-300 transform hover:scale-105 shadow-gentle hover:shadow-warm flex items-center justify-center space-x-2"
               >
                 <Send className="h-5 w-5" />
-                <span>Submit My Vision</span>
+                <span>Comenzar Mi Historia Dulce</span>
               </button>
             </form>
-            </div>
           </div>
         </div>
       </div>

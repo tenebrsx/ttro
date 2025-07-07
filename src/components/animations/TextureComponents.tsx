@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 // Subtle dust particles overlay
-export const DustParticles = ({ className = '' }: { className?: string }) => {
+export const DustParticles = ({ className = "" }: { className?: string }) => {
   return (
     <div className={`absolute inset-0 pointer-events-none ${className}`}>
       <div className="absolute inset-0 opacity-20">
@@ -30,7 +31,11 @@ export const DustParticles = ({ className = '' }: { className?: string }) => {
 };
 
 // Hand-drawn style divider
-export const HandDrawnDivider = ({ className = '' }: { className?: string }) => {
+export const HandDrawnDivider = ({
+  className = "",
+}: {
+  className?: string;
+}) => {
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <svg
@@ -49,7 +54,7 @@ export const HandDrawnDivider = ({ className = '' }: { className?: string }) => 
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ duration: 2, ease: 'easeInOut' }}
+          transition={{ duration: 2, ease: "easeInOut" }}
         />
         <motion.circle
           cx="100"
@@ -66,7 +71,7 @@ export const HandDrawnDivider = ({ className = '' }: { className?: string }) => 
 };
 
 // Soft wave divider
-export const WaveDivider = ({ className = '' }: { className?: string }) => {
+export const WaveDivider = ({ className = "" }: { className?: string }) => {
   return (
     <div className={`w-full ${className}`}>
       <svg
@@ -79,7 +84,7 @@ export const WaveDivider = ({ className = '' }: { className?: string }) => {
           d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ duration: 3, ease: 'easeInOut' }}
+          transition={{ duration: 3, ease: "easeInOut" }}
         />
       </svg>
     </div>
@@ -87,27 +92,35 @@ export const WaveDivider = ({ className = '' }: { className?: string }) => {
 };
 
 // Texture overlay for buttons and sections
-export const TextureOverlay = ({ className = '', intensity = 'low' }: { className?: string; intensity?: 'low' | 'medium' | 'high' }) => {
+export const TextureOverlay = ({
+  className = "",
+  intensity = "low",
+}: {
+  className?: string;
+  intensity?: "low" | "medium" | "high";
+}) => {
   const opacityMap = {
-    low: 'opacity-5',
-    medium: 'opacity-10',
-    high: 'opacity-20',
+    low: "opacity-5",
+    medium: "opacity-10",
+    high: "opacity-20",
   };
 
   return (
-    <div className={`absolute inset-0 pointer-events-none ${opacityMap[intensity]} ${className}`}>
+    <div
+      className={`absolute inset-0 pointer-events-none ${opacityMap[intensity]} ${className}`}
+    >
       <div className="w-full h-full bg-texture-subtle"></div>
     </div>
   );
 };
 
 // Handwritten accent text
-export const HandwrittenAccent = ({ 
-  children, 
-  className = '' 
-}: { 
-  children: React.ReactNode; 
-  className?: string; 
+export const HandwrittenAccent = ({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
 }) => {
   return (
     <span className={`font-dancing text-dusty-rose relative ${className}`}>
@@ -123,14 +136,14 @@ export const HandwrittenAccent = ({
 };
 
 // Grain texture background
-export const GrainTexture = ({ className = '' }: { className?: string }) => {
+export const GrainTexture = ({ className = "" }: { className?: string }) => {
   return (
     <div className={`absolute inset-0 pointer-events-none ${className}`}>
-      <div 
+      <div
         className="w-full h-full opacity-20"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'multiply',
+          mixBlendMode: "multiply",
         }}
       />
     </div>
@@ -138,9 +151,11 @@ export const GrainTexture = ({ className = '' }: { className?: string }) => {
 };
 
 // Floating shapes background
-export const FloatingShapes = ({ className = '' }: { className?: string }) => {
+export const FloatingShapes = ({ className = "" }: { className?: string }) => {
   return (
-    <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}>
+    <div
+      className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}
+    >
       {[...Array(5)].map((_, i) => (
         <motion.div
           key={i}
@@ -157,7 +172,7 @@ export const FloatingShapes = ({ className = '' }: { className?: string }) => {
           transition={{
             duration: 10 + Math.random() * 5,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         >
           <div className="w-8 h-8 bg-sage/20 rounded-full" />

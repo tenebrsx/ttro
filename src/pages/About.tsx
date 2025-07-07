@@ -1,163 +1,184 @@
 import { Heart, Clock, Award, Users } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
+import { FadeIn, StaggerChildren, StaggerChild } from '../components/animations/AnimationComponents';
+import { HandwrittenAccent, HandDrawnDivider } from '../components/animations/TextureComponents';
 
 const About = () => {
   const values = [
     {
       icon: Heart,
-      title: "Hecho con Amor",
-      description: "Cada postre es elaborado con cuidado genuino y atención al detalle"
+      title: "Amor en Cada Migaja",
+      description: "Porque los mejores sabores nacen del corazón, no de las prisas. Cada postre lleva mi cariño y dedicación."
     },
     {
       icon: Clock,
-      title: "Técnicas Consagradas",
-      description: "Métodos tradicionales combinados con creatividad moderna"
+      title: "Tradición que Abraza",
+      description: "Recetas que mi abuela me susurraba mientras yo lamía la cuchara, ahora reinventadas con mi toque personal."
     },
     {
       icon: Award,
-      title: "Ingredientes de Calidad",
-      description: "Solo los mejores ingredientes de temporada y locales llegan a mi cocina"
+      title: "Solo lo Mejor",
+      description: "Ingredientes que hablan por sí solos: vainilla de Madagascar, chocolate belga, frutas del mercado dominical."
     },
     {
       icon: Users,
-      title: "Toque Personal",
-      description: "Cada pedido es personalizado según tu visión y necesidades dietéticas"
+      title: "Hecho Para Ti",
+      description: "Tu historia es única, y tu postre también debe serlo. Creamos juntos algo que refleje tu momento especial."
     }
   ];
 
   return (
     <PageTransition>
       <div className="pt-16">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-cream to-white bg-texture">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <div className="w-16 h-px bg-sage/40"></div>
-            <span className="mx-4 text-sm font-karla text-sage/70 uppercase tracking-wider">Acerca de</span>
-            <div className="w-16 h-px bg-sage/40"></div>
+        {/* Hero Section */}
+        <section className="py-20 bg-gradient-to-br from-cream to-white bg-texture">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <FadeIn>
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-16 h-px bg-dusty-rose/40"></div>
+                <span className="mx-4 text-sm font-source-serif text-dusty-rose/70 uppercase tracking-wider">Mi Historia</span>
+                <div className="w-16 h-px bg-dusty-rose/40"></div>
+              </div>
+              
+              <h1 className="text-4xl sm:text-5xl font-playfair text-dark-cocoa mb-6">
+                Donde Cada Dulce
+                <span className="block text-dusty-rose italic">Cuenta una Historia</span>
+              </h1>
+              
+              <HandDrawnDivider className="mb-8" />
+              
+              <p className="text-lg text-mocha/70 leading-relaxed font-source-serif font-light max-w-2xl mx-auto">
+                Soy Rosa, y esta es la historia de cómo transformé domingos de nostalgia 
+                en una pasión que endulza los momentos más preciados de la vida.
+              </p>
+            </FadeIn>
           </div>
-          
-          <h1 className="text-4xl sm:text-5xl font-cormorant text-mocha mb-6 text-shadow-soft">
-            El Corazón Detrás de
-            <span className="block text-sage italic">Cada Creación Dulce</span>
-          </h1>
-          
-          <div className="w-24 h-px bg-sage/40 mx-auto mb-8"></div>
-          
-          <p className="text-lg text-mocha/70 leading-relaxed font-karla font-light max-w-2xl mx-auto">
-            Bienvenidos a mi mundo de postres artesanales, donde cada creación cuenta una historia 
-            y cada bocado está hecho con intención, amor y los mejores ingredientes.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* Main Story */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <img 
-                src="https://images.pexels.com/photos/3992204/pexels-photo-3992204.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop" 
-                alt="Baker in kitchen with natural light" 
-                className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-soft"
-              />
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-sage/20 rounded-full blur-xl"></div>
-              <div className="absolute -top-4 -left-4 w-16 h-16 bg-clay/30 rounded-full blur-lg"></div>
+        {/* Main Story */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <FadeIn direction="left">
+                <div className="relative">
+                  <img 
+                    src="https://images.pexels.com/photos/3992204/pexels-photo-3992204.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop" 
+                    alt="Rosa en su cocina trabajando con luz natural" 
+                    className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-gentle"
+                  />
+                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-dusty-rose/20 rounded-full blur-xl"></div>
+                  <div className="absolute -top-4 -left-4 w-16 h-16 bg-dusty-rose/30 rounded-full blur-lg"></div>
+                </div>
+              </FadeIn>
+
+              <FadeIn direction="right">
+                <div>
+                  <h2 className="text-3xl font-playfair text-dark-cocoa mb-6">
+                    Hola, soy Rosa, 
+                    <span className="block text-dusty-rose italic">el alma de cada dulce</span>
+                  </h2>
+                  
+                  <div className="space-y-6 text-mocha/80 text-lg leading-relaxed font-source-serif font-light">
+                    <p>
+                      Todo comenzó en la cocina de mi abuela, donde los domingos se llenaban del aroma 
+                      a canela y vainilla. Ahí aprendí que un postre no es solo azúcar y harina—es 
+                      cariño que toma forma, es memoria que se puede saborear.
+                    </p>
+                    
+                    <p>
+                      Hoy, en mi propia cocina, cada ingrediente es elegido con el mismo amor que ella 
+                      me enseñó. No uso atajos ni sabores artificiales, porque creo que lo auténtico 
+                      se siente en cada bocado. Trabajo con mis manos, sigo el ritmo de las estaciones, 
+                      y dejo que el tiempo haga su magia.
+                    </p>
+                    
+                    <p>
+                      Para mí, cada pedido es personal. Ya sea una torta de cumpleaños que dibuje 
+                      sonrisas o unos petit fours para una reunión íntima, pongo mi corazón en crear 
+                      dulces que sepan a hogar, pero con esa elegancia que hace especial el momento.
+                    </p>
+                  </div>
+
+                  <div className="mt-10 p-6 bg-cream/40 backdrop-blur-sm rounded-2xl border border-dusty-rose/10">
+                    <blockquote className="text-2xl font-playfair text-dusty-rose italic text-center">
+                      <HandwrittenAccent>
+                        &ldquo;No solo horneo postres—
+                        <span className="block mt-1">creo pequeños momentos de felicidad&rdquo;</span>
+                      </HandwrittenAccent>
+                    </blockquote>
+                    <cite className="block text-center text-sm text-mocha/60 mt-3 font-source-serif">- Rosa</cite>
+                  </div>
+                </div>
+              </FadeIn>
             </div>
+          </div>
+        </section>
 
-            <div>
-              <h2 className="text-3xl font-cormorant text-mocha mb-6">
-                Hello, I'm the heart behind Cucinanostrard
+        {/* Values */}
+        <section className="py-20 bg-gradient-to-br from-creamy-beige to-cream bg-texture">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeIn>
+              <div className="text-center mb-16">
+                <h2 className="text-3xl font-playfair text-dark-cocoa mb-6">
+                  Lo que Hace Especial
+                  <span className="block text-dusty-rose italic">Cada Creación</span>
+                </h2>
+                <HandDrawnDivider />
+              </div>
+            </FadeIn>
+
+            <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {values.map((value, index) => (
+                <StaggerChild key={index}>
+                  <div className="text-center group">
+                    <div className="w-16 h-16 bg-dusty-rose/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-dusty-rose/30 transition-all duration-300 group-hover:scale-110">
+                      <value.icon className="h-8 w-8 text-dusty-rose" />
+                    </div>
+                    <h3 className="text-lg font-playfair text-dark-cocoa mb-3">
+                      {value.title}
+                    </h3>
+                    <p className="text-mocha/70 font-source-serif font-light text-sm leading-relaxed">
+                      {value.description}
+                    </p>
+                  </div>
+                </StaggerChild>
+              ))}
+            </StaggerChildren>
+          </div>
+        </section>
+
+        {/* Philosophy */}
+        <section className="py-20 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <FadeIn>
+              <h2 className="text-3xl font-playfair text-dark-cocoa mb-8">
+                Mi Filosofía Dulce
               </h2>
               
-              <div className="space-y-6 text-mocha/80 text-lg leading-relaxed font-karla font-light">
+              <div className="space-y-8 text-mocha/80 text-lg leading-relaxed font-source-serif font-light">
                 <p>
-                  What started as Sunday afternoon baking sessions has grown into something 
-                  beautiful—creating sweet moments that become cherished memories. I believe 
-                  every celebration deserves desserts made with intention and love.
+                  Creo firmemente que los mejores postres nacen de la alegría y la intención. 
+                  Cada ingrediente es elegido con cuidado, cada técnica honrada con paciencia, 
+                  y cada creación está impregnada del amor que hace que la comida sea realmente nutritiva para el alma.
                 </p>
                 
                 <p>
-                  In my kitchen, I work with seasonal ingredients and time-honored techniques, 
-                  crafting each dessert by hand. No shortcuts, no artificial flavors—just 
-                  pure ingredients transformed into something magical through patience and care.
+                  Las estaciones guían mi menú—fresas jugosas en verano, especias cálidas en invierno, 
+                  y los cítricos brillantes de la primavera. Compro local cuando es posible, 
+                  apoyando a nuestra comunidad mientras aseguro que los sabores más frescos lleguen a tu mesa.
                 </p>
                 
                 <p>
-                  Every order is personal to me. Whether it's a birthday cake that makes 
-                  someone smile or elegant petit fours for an intimate gathering, I pour 
-                  my heart into creating desserts that taste like home, elevated.
+                  Lo más importante es que veo cada pedido como una oportunidad de ser parte de tu historia. 
+                  Ya sea una celebración íntima de cumpleaños o una boda soñada, mis postres están diseñados 
+                  para complementar tu momento, no opacarlo. 
+                  <HandwrittenAccent className="text-dusty-rose">Porque al final, lo que importa es la sonrisa.</HandwrittenAccent>
                 </p>
               </div>
-
-              <div className="mt-10 p-6 bg-cream/40 backdrop-blur-sm rounded-2xl border border-sage/10">
-                <blockquote className="text-2xl font-cormorant text-sage italic text-center">
-                  "I don't just bake—
-                  <span className="block mt-1">I create little edible moments."</span>
-                </blockquote>
-              </div>
-            </div>
+            </FadeIn>
           </div>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="py-20 bg-gradient-to-br from-cream to-white bg-texture">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-cormorant text-mocha mb-6">
-              What Makes Each Creation Special
-            </h2>
-            <div className="w-24 h-px bg-sage/40 mx-auto"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="text-center group">
-                <div className="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-sage/30 transition-colors duration-300">
-                  <value.icon className="h-8 w-8 text-sage" />
-                </div>
-                <h3 className="text-lg font-cormorant text-mocha mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-mocha/70 font-karla font-light text-sm leading-relaxed">
-                  {value.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-cormorant text-mocha mb-8">
-            My Baking Philosophy
-          </h2>
-          
-          <div className="space-y-8 text-mocha/80 text-lg leading-relaxed font-karla font-light">
-            <p>
-              I believe that the best desserts come from a place of joy and intention. 
-              Each ingredient is chosen with care, each technique honored with patience, 
-              and each creation infused with the love that makes food truly nourishing.
-            </p>
-            
-            <p>
-              Seasonality guides my menu—fresh berries in summer, warm spices in winter, 
-              and the bright citrus of spring. I source locally when possible, supporting 
-              our community while ensuring the freshest flavors reach your table.
-            </p>
-            
-            <p>
-              Most importantly, I see each order as an opportunity to be part of your story. 
-              Whether it's a quiet birthday celebration or an intimate wedding, my desserts 
-              are designed to complement your moment, not overshadow it.
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
     </PageTransition>
   );
 };

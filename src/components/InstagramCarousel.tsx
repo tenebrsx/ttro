@@ -1,6 +1,13 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Instagram, Heart, MessageCircle } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Instagram,
+  Heart,
+  MessageCircle,
+} from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 
 interface InstagramPost {
   id: string;
@@ -15,57 +22,64 @@ const InstagramCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Mock Instagram-style posts
+  // Instagram posts with real image paths
   const posts: InstagramPost[] = [
     {
-      id: '1',
-      image: '/api/placeholder/400/400',
-      caption: 'Tartaleta de frambuesa con crema de vainilla artesanal ✨',
+      id: "1",
+      image: "/images/instagram/chocolate-raspberry-tart.jpg",
+      caption: "Tartaleta de frambuesa con crema de vainilla artesanal ✨",
       likes: 127,
       comments: 23,
-      timeAgo: '2h'
+      timeAgo: "2h",
     },
     {
-      id: '2',
-      image: '/api/placeholder/400/400',
-      caption: 'Proceso de decoración de un pastel de bodas 🎂',
+      id: "2",
+      image: "/images/instagram/vanilla-caramel-macarons.jpg",
+      caption: "Proceso de decoración de un pastel de bodas 🎂",
       likes: 203,
       comments: 45,
-      timeAgo: '5h'
+      timeAgo: "5h",
     },
     {
-      id: '3',
-      image: '/api/placeholder/400/400',
-      caption: 'Macarons frescos del día en colores pasteles 🌸',
+      id: "3",
+      image: "/images/instagram/berry-cheesecake.jpg",
+      caption: "Macarons frescos del día en colores pasteles 🌸",
       likes: 156,
       comments: 31,
-      timeAgo: '1d'
+      timeAgo: "1d",
     },
     {
-      id: '4',
-      image: '/api/placeholder/400/400',
-      caption: 'Tiramisú individual con cacao importado 🍫',
+      id: "4",
+      image: "/images/instagram/decorated-cookies.jpg",
+      caption: "Tiramisú individual con cacao importado 🍫",
       likes: 189,
       comments: 28,
-      timeAgo: '2d'
+      timeAgo: "2d",
     },
     {
-      id: '5',
-      image: '/api/placeholder/400/400',
-      caption: 'Mesa de postres para evento corporativo 🏢',
+      id: "5",
+      image: "/images/instagram/strawberry-cupcakes.jpg",
+      caption: "Mesa de postres para evento corporativo 🏢",
       likes: 241,
       comments: 52,
-      timeAgo: '3d'
+      timeAgo: "3d",
     },
     {
-      id: '6',
-      image: '/api/placeholder/400/400',
-      caption: 'Clase magistral de decoración con buttercream 🎨',
+      id: "6",
+      image: "/images/instagram/buttercream-class.jpg",
+      caption: "Clase magistral de decoración con buttercream 🎨",
       likes: 178,
       comments: 39,
-      timeAgo: '4d'
-    }
+      timeAgo: "4d",
+    },
   ];
+
+  // Handle image loading errors
+  const handleImageError = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>,
+  ) => {
+    e.currentTarget.src = "/images/fallback-dessert.jpg";
+  };
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -100,16 +114,17 @@ const InstagramCarousel = () => {
             </span>
             <div className="w-16 h-px bg-sage/40"></div>
           </div>
-          
+
           <h2 className="text-4xl sm:text-5xl font-playfair text-dark-cocoa mb-6">
             Momentos
             <span className="block text-dusty-rose italic">Dulces</span>
           </h2>
-          
+
           <div className="w-24 h-px bg-sage/40 mx-auto mb-8"></div>
-          
+
           <p className="text-lg text-dark-cocoa/70 leading-relaxed font-source-serif max-w-2xl mx-auto">
-            Descubre el proceso detrás de cada creación y los momentos especiales que hacemos posibles.
+            Descubre el proceso detrás de cada creación y los momentos
+            especiales que hacemos posibles.
           </p>
         </div>
 
@@ -129,7 +144,9 @@ const InstagramCarousel = () => {
                 <Instagram className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="font-source-serif font-semibold text-dark-cocoa">@cucinanostrard</h3>
+                <h3 className="font-source-serif font-semibold text-dark-cocoa">
+                  @cucinanostrard
+                </h3>
                 <p className="text-sm text-dark-cocoa/60">Santo Domingo, RD</p>
               </div>
             </div>
@@ -145,10 +162,12 @@ const InstagramCarousel = () => {
                   transition={{ duration: 0.5 }}
                   className="absolute inset-0"
                 >
-                  <img
+                  <OptimizedImage
                     src={posts[currentSlide].image}
                     alt={posts[currentSlide].caption}
                     className="w-full h-full object-cover"
+                    onError={handleImageError}
+                    fallbackSrc="/images/fallback-dessert.jpg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </motion.div>
@@ -161,7 +180,7 @@ const InstagramCarousel = () => {
               >
                 <ChevronLeft className="w-4 h-4 text-dark-cocoa group-hover:scale-110 transition-transform" />
               </button>
-              
+
               <button
                 onClick={nextSlide}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-all duration-200 group"
@@ -193,15 +212,19 @@ const InstagramCarousel = () => {
                   {posts[currentSlide].timeAgo}
                 </span>
               </div>
-              
+
               <p className="text-sm text-dark-cocoa/80 mb-3 font-source-serif">
-                <span className="font-semibold">{posts[currentSlide].likes}</span> me gusta
+                <span className="font-semibold">
+                  {posts[currentSlide].likes}
+                </span>{" "}
+                me gusta
               </p>
-              
+
               <p className="text-sm text-dark-cocoa font-source-serif leading-relaxed">
-                <span className="font-semibold">cucinanostrard</span> {posts[currentSlide].caption}
+                <span className="font-semibold">cucinanostrard</span>{" "}
+                {posts[currentSlide].caption}
               </p>
-              
+
               <p className="text-sm text-dark-cocoa/60 mt-2 font-source-serif">
                 Ver los {posts[currentSlide].comments} comentarios
               </p>
@@ -216,8 +239,8 @@ const InstagramCarousel = () => {
                 onClick={() => goToSlide(index)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   index === currentSlide
-                    ? 'bg-dusty-rose w-6'
-                    : 'bg-dark-cocoa/30 hover:bg-dusty-rose/50'
+                    ? "bg-dusty-rose w-6"
+                    : "bg-dark-cocoa/30 hover:bg-dusty-rose/50"
                 }`}
               />
             ))}
@@ -227,7 +250,7 @@ const InstagramCarousel = () => {
         {/* Call to action */}
         <div className="text-center mt-12">
           <motion.a
-            href="https://instagram.com/cucinanostrard"
+            href="https://www.instagram.com/cucinanostrard/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-dusty-rose to-sage text-white rounded-full font-source-serif font-medium hover:shadow-lg transition-all duration-300 group"

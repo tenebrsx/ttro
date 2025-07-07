@@ -19,10 +19,17 @@ EmailJS allows you to send emails directly from the client-side without needing 
    - `{{guest_count}}` - Number of guests
    - `{{message}}` - Customer message
    - `{{submitted_at}}` - Submission timestamp
+   - `{{allergies}}` - Allergies or dietary restrictions
+   - `{{budget}}` - Budget range
 
 4. **Install EmailJS**:
    ```bash
-   npm install emailjs-com
+   npm install emailjs-com --legacy-peer-deps
+   ```
+   
+   Note: The `--legacy-peer-deps` flag is used to resolve dependency conflicts. Alternatively, you can use the newer package:
+   ```bash
+   npm install @emailjs/browser
    ```
 
 5. **Update the configuration** in `src/services/emailService.ts`:

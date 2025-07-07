@@ -4,8 +4,10 @@ const WhatsAppButton: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  // WhatsApp number (replace with actual number)
-  const phoneNumber = "18095550123"; // Format: country code + number without + or spaces
+  // WhatsApp number - Business contact number (Dominican Republic)
+  const phoneNumber = "18095551234"; // Format: country code + number without + or spaces
+  
+  // Default message that will be pre-filled in WhatsApp
   const message = "¡Hola! Me interesa conocer más sobre sus postres artesanales.";
   
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

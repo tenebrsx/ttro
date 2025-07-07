@@ -70,7 +70,7 @@ const ContactPageForm: React.FC = () => {
 
     // Phone validation (optional but if provided, should be valid)
     if (formData.phone.trim()) {
-      const phoneRegex = /^[\d\s\+\-\(\)]+$/;
+      const phoneRegex = /^[\d\s+\-()]+$/;
       if (!phoneRegex.test(formData.phone) || formData.phone.trim().length < 10) {
         newErrors.phone = 'Por favor ingresa un número de teléfono válido';
       }
@@ -201,7 +201,7 @@ const ContactPageForm: React.FC = () => {
         </p>
         <button
           onClick={() => setIsSubmitted(false)}
-          className="mt-6 text-sage hover:text-sage/80 font-karla text-sm transition-colors"
+          className="mt-6 text-dusty-rose hover:text-dusty-rose/80 font-karla text-sm transition-colors"
         >
           Enviar otro mensaje
         </button>
@@ -225,14 +225,14 @@ const ContactPageForm: React.FC = () => {
             Nombre Completo *
           </label>
           <div className="relative">
-            <User className="absolute left-3 top-3 h-5 w-5 text-sage/50" />
+            <User className="absolute left-3 top-3 h-5 w-5 text-dusty-rose/50" />
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sage/20 focus:border-sage transition-colors ${
+              className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-dusty-rose/20 focus:border-dusty-rose transition-colors ${
                 errors.name ? 'border-red-300' : 'border-gray-300'
               }`}
               placeholder="Tu nombre completo"
@@ -259,7 +259,7 @@ const ContactPageForm: React.FC = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sage/20 focus:border-sage transition-colors ${
+              className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-dusty-rose/20 focus:border-dusty-rose transition-colors ${
                 errors.email ? 'border-red-300' : 'border-gray-300'
               }`}
               placeholder="tu@email.com"
@@ -286,7 +286,7 @@ const ContactPageForm: React.FC = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sage/20 focus:border-sage transition-colors ${
+              className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-dusty-rose/20 focus:border-dusty-rose transition-colors ${
                 errors.phone ? 'border-red-300' : 'border-gray-300'
               }`}
               placeholder="(809) 555-0123"
@@ -312,7 +312,7 @@ const ContactPageForm: React.FC = () => {
               name="requestType"
               value={formData.requestType}
               onChange={handleChange}
-              className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sage/20 focus:border-sage transition-colors ${
+              className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-dusty-rose/20 focus:border-dusty-rose transition-colors ${
                 errors.requestType ? 'border-red-300' : 'border-gray-300'
               }`}
             >
@@ -347,7 +347,7 @@ const ContactPageForm: React.FC = () => {
                 name="eventDate"
                 value={formData.eventDate}
                 onChange={handleChange}
-                className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sage/20 focus:border-sage transition-colors ${
+                className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-dusty-rose/20 focus:border-dusty-rose transition-colors ${
                   errors.eventDate ? 'border-red-300' : 'border-gray-300'
                 }`}
               />
@@ -375,7 +375,7 @@ const ContactPageForm: React.FC = () => {
                 onChange={handleChange}
                 min="1"
                 max="1000"
-                className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sage/20 focus:border-sage transition-colors ${
+                className={`pl-10 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-dusty-rose/20 focus:border-dusty-rose transition-colors ${
                   errors.guestCount ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder="Ej: 12"
@@ -401,7 +401,7 @@ const ContactPageForm: React.FC = () => {
             value={formData.message}
             onChange={handleChange}
             rows={5}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sage/20 focus:border-sage transition-colors ${
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-dusty-rose/20 focus:border-dusty-rose transition-colors ${
               errors.message ? 'border-red-300' : 'border-gray-300'
             }`}
             placeholder="Describe tu visión: ¿qué tipo de postre tienes en mente? ¿Hay algún sabor especial que te gustaría? ¿Tienes alguna inspiración o tema en particular?"
@@ -418,10 +418,10 @@ const ContactPageForm: React.FC = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full bg-sage text-white py-3 px-6 rounded-lg font-karla font-medium transition-all transform hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-sage/20 ${
+          className={`w-full bg-dusty-rose text-white py-3 px-6 rounded-lg font-karla font-medium transition-all transform hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-dusty-rose/20 ${
             isSubmitting 
               ? 'opacity-50 cursor-not-allowed' 
-              : 'hover:bg-sage/90'
+              : 'hover:bg-dusty-rose/90'
           }`}
         >
           {isSubmitting ? (
