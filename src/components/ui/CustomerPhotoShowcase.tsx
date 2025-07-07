@@ -1,5 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Heart, MessageCircle, Share2, ChevronLeft, ChevronRight, Camera, X, Instagram, User, MapPin, Calendar, Star, Flag } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import {
+  Heart,
+  MessageCircle,
+  Share2,
+  ChevronLeft,
+  ChevronRight,
+  Camera,
+  X,
+  Instagram,
+  User,
+  MapPin,
+  Calendar,
+  Star,
+  Flag,
+} from "lucide-react";
 
 interface CustomerPhoto {
   id: string;
@@ -16,7 +30,7 @@ interface CustomerPhoto {
   dessertTags: string[];
   rating?: number;
   isVerified: boolean;
-  socialPlatform?: 'instagram' | 'facebook' | 'twitter' | 'tiktok';
+  socialPlatform?: "instagram" | "facebook" | "twitter" | "tiktok";
   socialHandle?: string;
   eventType?: string;
   orderNumber?: string;
@@ -40,17 +54,17 @@ interface PhotoFilters {
   rating: number;
   platform: string;
   eventType: string;
-  sortBy: 'recent' | 'popular' | 'rating' | 'comments';
-  timeRange: 'all' | 'week' | 'month' | 'year';
+  sortBy: "recent" | "popular" | "rating" | "comments";
+  timeRange: "all" | "week" | "month" | "year";
 }
 
 const defaultFilters: PhotoFilters = {
-  dessertType: '',
+  dessertType: "",
   rating: 0,
-  platform: '',
-  eventType: '',
-  sortBy: 'recent',
-  timeRange: 'all'
+  platform: "",
+  eventType: "",
+  sortBy: "recent",
+  timeRange: "all",
 };
 
 export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
@@ -63,15 +77,19 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
   maxPhotosToShow = 20,
   showSocialHandles = true,
   allowReporting = true,
-  onPhotoSelect
+  onPhotoSelect,
 }) => {
   const [filteredPhotos, setFilteredPhotos] = useState<CustomerPhoto[]>([]);
   const [filters, setFilters] = useState<PhotoFilters>(defaultFilters);
-  const [selectedPhoto, setSelectedPhoto] = useState<CustomerPhoto | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<CustomerPhoto | null>(
+    null,
+  );
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [likedPhotos, setLikedPhotos] = useState<Set<string>>(new Set());
   const [showReportModal, setShowReportModal] = useState(false);
-  const [reportingPhoto, setReportingPhoto] = useState<CustomerPhoto | null>(null);
+  const [reportingPhoto, setReportingPhoto] = useState<CustomerPhoto | null>(
+    null,
+  );
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
 
   // Apply filters and sorting
@@ -80,60 +98,60 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
 
     // Apply filters
     if (filters.dessertType) {
-      filtered = filtered.filter(photo =>
-        photo.dessertTags.some(tag =>
-          tag.toLowerCase().includes(filters.dessertType.toLowerCase())
-        )
+      filtered = filtered.filter((photo) =>
+        photo.dessertTags.some((tag) =>
+          tag.toLowerCase().includes(filters.dessertType.toLowerCase()),
+        ),
       );
     }
 
     if (filters.rating > 0) {
-      filtered = filtered.filter(photo =>
-        photo.rating && photo.rating >= filters.rating
+      filtered = filtered.filter(
+        (photo) => photo.rating && photo.rating >= filters.rating,
       );
     }
 
     if (filters.platform) {
-      filtered = filtered.filter(photo =>
-        photo.socialPlatform === filters.platform
+      filtered = filtered.filter(
+        (photo) => photo.socialPlatform === filters.platform,
       );
     }
 
     if (filters.eventType) {
-      filtered = filtered.filter(photo =>
-        photo.eventType === filters.eventType
+      filtered = filtered.filter(
+        (photo) => photo.eventType === filters.eventType,
       );
     }
 
-    if (filters.timeRange !== 'all') {
+    if (filters.timeRange !== "all") {
       const now = new Date();
       const timeLimit = new Date();
 
       switch (filters.timeRange) {
-        case 'week':
+        case "week":
           timeLimit.setDate(now.getDate() - 7);
           break;
-        case 'month':
+        case "month":
           timeLimit.setMonth(now.getMonth() - 1);
           break;
-        case 'year':
+        case "year":
           timeLimit.setFullYear(now.getFullYear() - 1);
           break;
       }
 
-      filtered = filtered.filter(photo => photo.timestamp >= timeLimit);
+      filtered = filtered.filter((photo) => photo.timestamp >= timeLimit);
     }
 
     // Apply sorting
     filtered.sort((a, b) => {
       switch (filters.sortBy) {
-        case 'popular':
+        case "popular":
           return b.likes - a.likes;
-        case 'rating':
+        case "rating":
           return (b.rating || 0) - (a.rating || 0);
-        case 'comments':
+        case "comments":
           return b.comments - a.comments;
-        case 'recent':
+        case "recent":
         default:
           return b.timestamp.getTime() - a.timestamp.getTime();
       }
@@ -156,7 +174,7 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
   };
 
   const handleLike = (photoId: string) => {
-    setLikedPhotos(prev => {
+    setLikedPhotos((prev) => {
       const updated = new Set(prev);
       if (updated.has(photoId)) {
         updated.delete(photoId);
@@ -171,12 +189,12 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `¡Mira este delicioso ${photo.dessertTags.join(', ')}!`,
+          title: `¡Mira este delicioso ${photo.dessertTags.join(", ")}!`,
           text: photo.caption,
-          url: window.location.href
+          url: window.location.href,
         });
       } catch (error) {
-        console.log('Share failed:', error);
+        console.log("Share failed:", error);
       }
     } else {
       // Fallback to copying URL
@@ -193,10 +211,11 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
     setSelectedPhoto(null);
   };
 
-  const navigateLightbox = (direction: 'next' | 'prev') => {
-    const newIndex = direction === 'next'
-      ? (lightboxIndex + 1) % filteredPhotos.length
-      : (lightboxIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
+  const navigateLightbox = (direction: "next" | "prev") => {
+    const newIndex =
+      direction === "next"
+        ? (lightboxIndex + 1) % filteredPhotos.length
+        : (lightboxIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
 
     setLightboxIndex(newIndex);
     setSelectedPhoto(filteredPhotos[newIndex]);
@@ -216,22 +235,22 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
     } else if (diffDays < 7) {
       return `hace ${diffDays}d`;
     } else {
-      return timestamp.toLocaleDateString('es-ES', {
-        month: 'short',
-        day: 'numeric'
+      return timestamp.toLocaleDateString("es-ES", {
+        month: "short",
+        day: "numeric",
       });
     }
   };
 
   const getSocialIcon = (platform: string) => {
     switch (platform) {
-      case 'instagram':
+      case "instagram":
         return <Instagram className="w-4 h-4" />;
-      case 'facebook':
+      case "facebook":
         return <span className="w-4 h-4 text-blue-600">f</span>;
-      case 'twitter':
+      case "twitter":
         return <span className="w-4 h-4 text-blue-400">🐦</span>;
-      case 'tiktok':
+      case "tiktok":
         return <span className="w-4 h-4 text-black">🎵</span>;
       default:
         return <User className="w-4 h-4" />;
@@ -240,13 +259,13 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
 
   const getGridColumns = () => {
     return {
-      'grid-cols-2': columnsMobile === 2,
-      'grid-cols-3': columnsMobile === 3,
-      'md:grid-cols-3': columnsTablet === 3,
-      'md:grid-cols-4': columnsTablet === 4,
-      'lg:grid-cols-4': columnsDesktop === 4,
-      'lg:grid-cols-5': columnsDesktop === 5,
-      'lg:grid-cols-6': columnsDesktop === 6,
+      "grid-cols-2": columnsMobile === 2,
+      "grid-cols-3": columnsMobile === 3,
+      "md:grid-cols-3": columnsTablet === 3,
+      "md:grid-cols-4": columnsTablet === 4,
+      "lg:grid-cols-4": columnsDesktop === 4,
+      "lg:grid-cols-5": columnsDesktop === 5,
+      "lg:grid-cols-6": columnsDesktop === 6,
     };
   };
 
@@ -268,7 +287,7 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
               <Camera className="w-5 h-5" />
               <span className="text-sm">{filteredPhotos.length} fotos</span>
             </div>
-            <button className="bg-sage text-white px-4 py-2 rounded-lg hover:bg-sage/90 transition-colors">
+            <button className="bg-dusty-rose text-white px-4 py-2 rounded-lg hover:bg-dusty-rose/90 transition-colors">
               Compartir tu foto
             </button>
           </div>
@@ -284,8 +303,13 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
                 </label>
                 <select
                   value={filters.dessertType}
-                  onChange={(e) => setFilters(prev => ({ ...prev, dessertType: e.target.value }))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-sage"
+                  onChange={(e) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      dessertType: e.target.value,
+                    }))
+                  }
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dusty-rose focus:border-dusty-rose"
                 >
                   <option value="">Todos los postres</option>
                   <option value="tarta">Tartas</option>
@@ -302,8 +326,13 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
                 </label>
                 <select
                   value={filters.platform}
-                  onChange={(e) => setFilters(prev => ({ ...prev, platform: e.target.value }))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-sage"
+                  onChange={(e) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      platform: e.target.value,
+                    }))
+                  }
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dusty-rose focus:border-dusty-rose"
                 >
                   <option value="">Todas las plataformas</option>
                   <option value="instagram">Instagram</option>
@@ -319,8 +348,13 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
                 </label>
                 <select
                   value={filters.sortBy}
-                  onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value as any }))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-sage"
+                  onChange={(e) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      sortBy: e.target.value as any,
+                    }))
+                  }
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dusty-rose focus:border-dusty-rose"
                 >
                   <option value="recent">Más reciente</option>
                   <option value="popular">Más popular</option>
@@ -335,8 +369,13 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
                 </label>
                 <select
                   value={filters.timeRange}
-                  onChange={(e) => setFilters(prev => ({ ...prev, timeRange: e.target.value as any }))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-sage"
+                  onChange={(e) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      timeRange: e.target.value as any,
+                    }))
+                  }
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dusty-rose focus:border-dusty-rose"
                 >
                   <option value="all">Todo el tiempo</option>
                   <option value="week">Esta semana</option>
@@ -350,7 +389,12 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
       </div>
 
       {/* Photo Grid */}
-      <div className={`grid gap-4 ${Object.entries(getGridColumns()).filter(([_, active]) => active).map(([cls]) => cls).join(' ')}`}>
+      <div
+        className={`grid gap-4 ${Object.entries(getGridColumns())
+          .filter(([_, active]) => active)
+          .map(([cls]) => cls)
+          .join(" ")}`}
+      >
         {filteredPhotos.map((photo, index) => (
           <div
             key={photo.id}
@@ -434,7 +478,9 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
                       <>
                         <span>•</span>
                         <MapPin className="w-3 h-3" />
-                        <span className="truncate">{photo.customerLocation}</span>
+                        <span className="truncate">
+                          {photo.customerLocation}
+                        </span>
                       </>
                     )}
                   </div>
@@ -448,10 +494,10 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
 
               {/* Tags */}
               <div className="flex flex-wrap gap-1 mb-2">
-                {photo.dessertTags.slice(0, 2).map(tag => (
+                {photo.dessertTags.slice(0, 2).map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 bg-sage/20 text-sage text-xs rounded-full"
+                    className="px-2 py-1 bg-dusty-rose/20 text-dusty-rose text-xs rounded-full"
                   >
                     #{tag}
                   </span>
@@ -461,15 +507,19 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
               {/* Rating */}
               {photo.rating && (
                 <div className="flex items-center space-x-1 mb-2">
-                  {[1, 2, 3, 4, 5].map(star => (
+                  {[1, 2, 3, 4, 5].map((star) => (
                     <Star
                       key={star}
                       className={`w-4 h-4 ${
-                        star <= photo.rating! ? 'text-yellow-400 fill-current' : 'text-gray-300'
+                        star <= photo.rating!
+                          ? "text-yellow-400 fill-current"
+                          : "text-gray-300"
                       }`}
                     />
                   ))}
-                  <span className="text-sm text-gray-600">({photo.rating})</span>
+                  <span className="text-sm text-gray-600">
+                    ({photo.rating})
+                  </span>
                 </div>
               )}
 
@@ -483,15 +533,19 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
                     }}
                     className="flex items-center space-x-1 text-gray-600 hover:text-red-500 transition-colors"
                   >
-                    <Heart className={`w-4 h-4 ${likedPhotos.has(photo.id) ? 'fill-current text-red-500' : ''}`} />
-                    <span className="text-sm">{photo.likes + (likedPhotos.has(photo.id) ? 1 : 0)}</span>
+                    <Heart
+                      className={`w-4 h-4 ${likedPhotos.has(photo.id) ? "fill-current text-red-500" : ""}`}
+                    />
+                    <span className="text-sm">
+                      {photo.likes + (likedPhotos.has(photo.id) ? 1 : 0)}
+                    </span>
                   </button>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       handleShare(photo);
                     }}
-                    className="flex items-center space-x-1 text-gray-600 hover:text-sage transition-colors"
+                    className="flex items-center space-x-1 text-gray-600 hover:text-dusty-rose transition-colors"
                   >
                     <Share2 className="w-4 h-4" />
                     <span className="text-sm">{photo.shares}</span>
@@ -515,8 +569,6 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
         ))}
       </div>
 
-
-
       {/* Lightbox */}
       {selectedPhoto && showLightbox && (
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
@@ -531,13 +583,13 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
 
             {/* Navigation */}
             <button
-              onClick={() => navigateLightbox('prev')}
+              onClick={() => navigateLightbox("prev")}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
             </button>
             <button
-              onClick={() => navigateLightbox('next')}
+              onClick={() => navigateLightbox("next")}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
             >
               <ChevronRight className="w-6 h-6 text-white" />
@@ -593,16 +645,14 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
                 </div>
 
                 {/* Caption */}
-                <p className="text-gray-800 mb-4">
-                  {selectedPhoto.caption}
-                </p>
+                <p className="text-gray-800 mb-4">{selectedPhoto.caption}</p>
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {selectedPhoto.dessertTags.map(tag => (
+                  {selectedPhoto.dessertTags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-sage/20 text-sage text-sm rounded-full"
+                      className="px-3 py-1 bg-dusty-rose/20 text-dusty-rose text-sm rounded-full"
                     >
                       #{tag}
                     </span>
@@ -613,16 +663,20 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
                 {selectedPhoto.rating && (
                   <div className="flex items-center space-x-2 mb-4">
                     <div className="flex items-center">
-                      {[1, 2, 3, 4, 5].map(star => (
+                      {[1, 2, 3, 4, 5].map((star) => (
                         <Star
                           key={star}
                           className={`w-5 h-5 ${
-                            star <= selectedPhoto.rating! ? 'text-yellow-400 fill-current' : 'text-gray-300'
+                            star <= selectedPhoto.rating!
+                              ? "text-yellow-400 fill-current"
+                              : "text-gray-300"
                           }`}
                         />
                       ))}
                     </div>
-                    <span className="text-gray-600">({selectedPhoto.rating}/5)</span>
+                    <span className="text-gray-600">
+                      ({selectedPhoto.rating}/5)
+                    </span>
                   </div>
                 )}
 
@@ -648,17 +702,22 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
                     onClick={() => handleLike(selectedPhoto.id)}
                     className="flex items-center space-x-2 text-gray-600 hover:text-red-500 transition-colors"
                   >
-                    <Heart className={`w-5 h-5 ${likedPhotos.has(selectedPhoto.id) ? 'fill-current text-red-500' : ''}`} />
-                    <span>{selectedPhoto.likes + (likedPhotos.has(selectedPhoto.id) ? 1 : 0)}</span>
+                    <Heart
+                      className={`w-5 h-5 ${likedPhotos.has(selectedPhoto.id) ? "fill-current text-red-500" : ""}`}
+                    />
+                    <span>
+                      {selectedPhoto.likes +
+                        (likedPhotos.has(selectedPhoto.id) ? 1 : 0)}
+                    </span>
                   </button>
                   <button
                     onClick={() => handleShare(selectedPhoto)}
-                    className="flex items-center space-x-2 text-gray-600 hover:text-sage transition-colors"
+                    className="flex items-center space-x-2 text-gray-600 hover:text-dusty-rose transition-colors"
                   >
                     <Share2 className="w-5 h-5" />
                     <span>{selectedPhoto.shares}</span>
                   </button>
-                  <button className="flex items-center space-x-2 text-gray-600 hover:text-sage transition-colors">
+                  <button className="flex items-center space-x-2 text-gray-600 hover:text-dusty-rose transition-colors">
                     <MessageCircle className="w-5 h-5" />
                     <span>{selectedPhoto.comments}</span>
                   </button>
@@ -681,18 +740,18 @@ export const CustomerPhotoShowcase: React.FC<CustomerPhotoShowcaseProps> = ({
             </p>
             <div className="space-y-2 mb-6">
               {[
-                'Contenido inapropiado',
-                'Spam',
-                'Información falsa',
-                'Violación de derechos de autor',
-                'Otro'
-              ].map(reason => (
+                "Contenido inapropiado",
+                "Spam",
+                "Información falsa",
+                "Violación de derechos de autor",
+                "Otro",
+              ].map((reason) => (
                 <label key={reason} className="flex items-center space-x-3">
                   <input
                     type="radio"
                     name="report-reason"
                     value={reason}
-                    className="text-sage focus:ring-sage"
+                    className="text-dusty-rose focus:ring-dusty-rose"
                   />
                   <span className="text-sm text-gray-700">{reason}</span>
                 </label>
@@ -733,34 +792,43 @@ export const useCustomerPhotoShowcase = () => {
     setLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Mock data would be replaced with actual API call
-      const mockPhotos: CustomerPhoto[] = Array.from({ length: limit }, (_, i) => ({
-        id: `photo-${i}`,
-        imageUrl: `/api/placeholder/400/400`,
-        thumbnailUrl: `/api/placeholder/200/200`,
-        customerName: `Cliente ${i + 1}`,
-        customerAvatar: `/api/placeholder/50/50`,
-        customerLocation: 'Ciudad de México',
-        caption: `¡Increíble ${['tarta', 'macaron', 'cupcake'][i % 3]}! Perfecto para mi celebración especial.`,
-        likes: Math.floor(Math.random() * 100),
-        comments: Math.floor(Math.random() * 20),
-        shares: Math.floor(Math.random() * 10),
-        timestamp: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000),
-        dessertTags: [['tarta', 'chocolate'], ['macaron', 'vainilla'], ['cupcake', 'fresa']][i % 3],
-        rating: Math.floor(Math.random() * 2) + 4,
-        isVerified: Math.random() > 0.8,
-        socialPlatform: ['instagram', 'facebook', 'twitter'][i % 3] as any,
-        socialHandle: `user${i + 1}`,
-        eventType: ['Cumpleaños', 'Boda', 'Aniversario'][i % 3],
-        orderNumber: `ORD-${1000 + i}`
-      }));
+      const mockPhotos: CustomerPhoto[] = Array.from(
+        { length: limit },
+        (_, i) => ({
+          id: `photo-${i}`,
+          imageUrl: `/api/placeholder/400/400`,
+          thumbnailUrl: `/api/placeholder/200/200`,
+          customerName: `Cliente ${i + 1}`,
+          customerAvatar: `/api/placeholder/50/50`,
+          customerLocation: "Ciudad de México",
+          caption: `¡Increíble ${["tarta", "macaron", "cupcake"][i % 3]}! Perfecto para mi celebración especial.`,
+          likes: Math.floor(Math.random() * 100),
+          comments: Math.floor(Math.random() * 20),
+          shares: Math.floor(Math.random() * 10),
+          timestamp: new Date(
+            Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000,
+          ),
+          dessertTags: [
+            ["tarta", "chocolate"],
+            ["macaron", "vainilla"],
+            ["cupcake", "fresa"],
+          ][i % 3],
+          rating: Math.floor(Math.random() * 2) + 4,
+          isVerified: Math.random() > 0.8,
+          socialPlatform: ["instagram", "facebook", "twitter"][i % 3] as any,
+          socialHandle: `user${i + 1}`,
+          eventType: ["Cumpleaños", "Boda", "Aniversario"][i % 3],
+          orderNumber: `ORD-${1000 + i}`,
+        }),
+      );
 
-      setPhotos(prev => [...prev, ...mockPhotos]);
+      setPhotos((prev) => [...prev, ...mockPhotos]);
       setHasMore(mockPhotos.length === limit);
     } catch (error) {
-      console.error('Error loading photos:', error);
+      console.error("Error loading photos:", error);
     } finally {
       setLoading(false);
     }
@@ -769,10 +837,10 @@ export const useCustomerPhotoShowcase = () => {
   const submitPhoto = async (_photo: FormData) => {
     try {
       // Simulate API call to submit user photo
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      return { success: true, message: 'Foto enviada exitosamente' };
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return { success: true, message: "Foto enviada exitosamente" };
     } catch (error) {
-      return { success: false, message: 'Error al enviar la foto' };
+      return { success: false, message: "Error al enviar la foto" };
     }
   };
 
@@ -781,6 +849,6 @@ export const useCustomerPhotoShowcase = () => {
     loading,
     hasMore,
     loadPhotos,
-    submitPhoto
+    submitPhoto,
   };
 };

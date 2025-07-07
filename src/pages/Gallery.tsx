@@ -151,7 +151,7 @@ const Gallery = () => {
         </section>
 
         {/* Tab Navigation */}
-        <section className="py-8 bg-white border-b border-sage/10">
+        <section className="py-8 bg-white border-b border-dusty-rose/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-center mb-8">
               <div className="flex space-x-2 bg-gray-100 p-2 rounded-lg">
@@ -159,7 +159,7 @@ const Gallery = () => {
                   onClick={() => setActiveTab("gallery")}
                   className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                     activeTab === "gallery"
-                      ? "bg-sage text-white shadow-warm"
+                      ? "bg-dusty-rose text-white shadow-warm"
                       : "text-gray-700 hover:bg-gray-200"
                   }`}
                 >
@@ -169,7 +169,7 @@ const Gallery = () => {
                   onClick={() => setActiveTab("customer-photos")}
                   className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                     activeTab === "customer-photos"
-                      ? "bg-sage text-white shadow-warm"
+                      ? "bg-dusty-rose text-white shadow-warm"
                       : "text-gray-700 hover:bg-gray-200"
                   }`}
                 >
