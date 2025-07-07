@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, Phone, Mail, Instagram, Plus, X } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import { MessageCircle, Phone, Mail, Instagram } from "lucide-react";
 
 interface ContactAction {
   id: string;
@@ -11,8 +11,6 @@ interface ContactAction {
 }
 
 const FloatingActionButton: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const contactActions: ContactAction[] = [
     {
       id: "whatsapp",
@@ -62,142 +60,66 @@ const FloatingActionButton: React.FC = () => {
     },
   ];
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {/* Action buttons */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="absolute bottom-16 right-0 flex flex-col space-y-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {contactActions.map((action, index) => (
-              <motion.div
-                key={action.id}
-                className="flex items-center space-x-3"
-                initial={{ opacity: 0, x: 50, scale: 0.8 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: 50, scale: 0.8 }}
-                transition={{
-                  duration: 0.3,
-                  delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                }}
-              >
-                {/* Label */}
-                <motion.div
-                  className="bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg shadow-gentle border border-dusty-rose/10"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span className="text-sm font-medium text-mocha whitespace-nowrap">
-                    {action.label}
-                  </span>
-                </motion.div>
-
-                {/* Action button */}
-                <motion.button
-                  onClick={action.action}
-                  className={`w-12 h-12 ${action.color} text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 relative overflow-hidden`}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  {action.icon}
-
-                  {/* Pulse effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-white/30 rounded-full"
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 0, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
-                </motion.button>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Main toggle button */}
-      <motion.button
-        onClick={toggleMenu}
-        className="w-14 h-14 bg-gradient-to-r from-dusty-rose to-warm-blush text-white rounded-full shadow-xl flex items-center justify-center relative overflow-hidden"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        aria-label="Contactar"
+      <motion.div
+        className="flex flex-col space-y-3"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <motion.div
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
-        </motion.div>
-
-        {/* Background pulse */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-warm-blush to-dusty-rose rounded-full"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.7, 0.3, 0.7],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        {/* Notification dot */}
-        <motion.div
-          className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 1, type: "spring", stiffness: 300 }}
-        >
+        {contactActions.map((action, index) => (
           <motion.div
-            className="w-2 h-2 bg-white rounded-full"
-            animate={{
-              scale: [0.8, 1.2, 0.8],
-            }}
+            key={action.id}
+            className="flex items-center space-x-3"
+            initial={{ opacity: 0, x: 50, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
+              duration: 0.3,
+              delay: index * 0.1,
+              type: "spring",
+              stiffness: 300,
+              damping: 20,
             }}
-          />
-        </motion.div>
-      </motion.button>
+          >
+            {/* Label */}
+            <motion.div
+              className="bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg shadow-gentle border border-dusty-rose/10"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className="text-sm font-medium text-mocha whitespace-nowrap">
+                {action.label}
+              </span>
+            </motion.div>
 
-      {/* Backdrop */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="fixed inset-0 bg-black/10 backdrop-blur-[2px] -z-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setIsOpen(false)}
-          />
-        )}
-      </AnimatePresence>
+            {/* Action button */}
+            <motion.button
+              onClick={action.action}
+              className={`w-12 h-12 ${action.color} text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 relative overflow-hidden`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              {action.icon}
+
+              {/* Pulse effect */}
+              <motion.div
+                className="absolute inset-0 bg-white/30 rounded-full"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.5, 0, 0.5],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.button>
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
 };
