@@ -20,7 +20,7 @@ export const FloatingActionButton: React.FC = () => {
       icon: <MessageCircle className="w-5 h-5" />,
       color: "bg-green-500 hover:bg-green-600",
       action: () => {
-        const phoneNumber = "18095550123";
+        const phoneNumber = "18096581245";
         const message =
           "¡Hola! Me interesa conocer más sobre sus postres artesanales. ¿Podrían ayudarme con información sobre pedidos personalizados?";
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -33,7 +33,7 @@ export const FloatingActionButton: React.FC = () => {
       icon: <Phone className="w-5 h-5" />,
       color: "bg-blue-500 hover:bg-blue-600",
       action: () => {
-        window.location.href = "tel:+18095550123";
+        window.location.href = "tel:+18096581245";
       },
     },
     {

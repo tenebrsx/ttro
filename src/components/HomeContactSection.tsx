@@ -1,44 +1,46 @@
-import React, { useState } from 'react';
-import { Heart, Send, Calendar, MessageCircle } from 'lucide-react';
-import Button from './Button';
+import React, { useState } from "react";
+import { Heart, Send, Calendar, MessageCircle } from "lucide-react";
+import Button from "./Button";
 
 const HomeContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    eventDate: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    eventDate: "",
+    message: "",
   });
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-      
+
       // Reset form after success message
       setTimeout(() => {
         setSubmitted(false);
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          eventDate: '',
-          message: ''
+          name: "",
+          email: "",
+          phone: "",
+          eventDate: "",
+          message: "",
         });
       }, 4000);
     }, 2000);
@@ -52,15 +54,23 @@ const HomeContactSection: React.FC = () => {
             <div className="w-20 h-20 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <Heart className="w-10 h-10 text-sage" />
             </div>
-            <h3 className="text-3xl font-cormorant text-mocha mb-4">¡Mensaje Enviado!</h3>
+            <h3 className="text-3xl font-cormorant text-mocha mb-4">
+              ¡Mensaje Enviado!
+            </h3>
             <p className="text-lg text-mocha/70 font-karla leading-relaxed max-w-lg mx-auto">
-              Gracias por contactarme. Te responderé dentro de 24 horas para conversar 
-              sobre tu dulce celebración.
+              Gracias por contactarme. Te responderé dentro de 24 horas para
+              conversar sobre tu dulce celebración.
             </p>
             <div className="mt-6 flex items-center justify-center space-x-2">
               <div className="w-2 h-2 bg-sage rounded-full animate-bounce"></div>
-              <div className="w-2 h-2 bg-sage rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-              <div className="w-2 h-2 bg-sage rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+              <div
+                className="w-2 h-2 bg-sage rounded-full animate-bounce"
+                style={{ animationDelay: "0.1s" }}
+              ></div>
+              <div
+                className="w-2 h-2 bg-sage rounded-full animate-bounce"
+                style={{ animationDelay: "0.2s" }}
+              ></div>
             </div>
           </div>
         </div>
@@ -80,17 +90,17 @@ const HomeContactSection: React.FC = () => {
             </span>
             <div className="w-16 h-px bg-sage/40"></div>
           </div>
-          
+
           <h2 className="text-4xl sm:text-5xl font-cormorant text-mocha mb-6 text-shadow-soft">
             ¿Listo para Endulzar
             <span className="block text-sage italic">Tu Próxima Ocasión?</span>
           </h2>
-          
+
           <div className="w-24 h-px bg-sage/40 mx-auto mb-6"></div>
-          
+
           <p className="text-lg text-mocha/70 max-w-2xl mx-auto font-karla font-light leading-relaxed">
-            Cuéntame sobre tu ocasión especial y creemos juntos el postre perfecto que hará 
-            que tu momento sea verdaderamente inolvidable.
+            Cuéntame sobre tu ocasión especial y creemos juntos el postre
+            perfecto que hará que tu momento sea verdaderamente inolvidable.
           </p>
         </div>
 
@@ -98,7 +108,9 @@ const HomeContactSection: React.FC = () => {
           {/* Contact Form */}
           <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-sage/20 shadow-gentle">
             <div className="mb-6">
-              <h3 className="text-2xl font-cormorant text-mocha mb-2">Envíame Tu Idea</h3>
+              <h3 className="text-2xl font-cormorant text-mocha mb-2">
+                Envíame Tu Idea
+              </h3>
               <p className="text-mocha/70 font-karla">
                 Completa este formulario rápido y te contactaré pronto
               </p>
@@ -120,7 +132,7 @@ const HomeContactSection: React.FC = () => {
                     placeholder="Tu nombre"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-mocha mb-1 font-karla">
                     Email *
@@ -148,10 +160,10 @@ const HomeContactSection: React.FC = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg border border-sage/20 focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors font-karla text-sm"
-                    placeholder="(809) 000-0000"
+                    placeholder="(809) 658-1245"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-mocha mb-1 font-karla">
                     <Calendar className="inline w-4 h-4 mr-1" />
@@ -191,7 +203,7 @@ const HomeContactSection: React.FC = () => {
                 size="lg"
                 className="w-full"
               >
-                {loading ? 'Enviando...' : 'Iniciar Mi Consulta'}
+                {loading ? "Enviando..." : "Iniciar Mi Consulta"}
               </Button>
             </form>
           </div>
@@ -199,14 +211,17 @@ const HomeContactSection: React.FC = () => {
           {/* Info & Benefits */}
           <div className="space-y-8">
             <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-sage/20">
-              <h4 className="text-xl font-cormorant text-mocha mb-4">¿Qué Sucede Después?</h4>
+              <h4 className="text-xl font-cormorant text-mocha mb-4">
+                ¿Qué Sucede Después?
+              </h4>
               <div className="space-y-3">
                 <div className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-sage text-sm font-medium">1</span>
                   </div>
                   <p className="text-mocha/80 font-karla text-sm">
-                    <span className="font-medium">Respuesta rápida:</span> Te contacto en 24 horas
+                    <span className="font-medium">Respuesta rápida:</span> Te
+                    contacto en 24 horas
                   </p>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -214,7 +229,8 @@ const HomeContactSection: React.FC = () => {
                     <span className="text-sage text-sm font-medium">2</span>
                   </div>
                   <p className="text-mocha/80 font-karla text-sm">
-                    <span className="font-medium">Consulta personalizada:</span> Conversamos sobre tu visión
+                    <span className="font-medium">Consulta personalizada:</span>{" "}
+                    Conversamos sobre tu visión
                   </p>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -222,7 +238,8 @@ const HomeContactSection: React.FC = () => {
                     <span className="text-sage text-sm font-medium">3</span>
                   </div>
                   <p className="text-mocha/80 font-karla text-sm">
-                    <span className="font-medium">Propuesta a medida:</span> Diseño y presupuesto personalizado
+                    <span className="font-medium">Propuesta a medida:</span>{" "}
+                    Diseño y presupuesto personalizado
                   </p>
                 </div>
               </div>

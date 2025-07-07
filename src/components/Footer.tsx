@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, MessageCircle, MapPin, Instagram } from 'lucide-react';
-import Logo from './Logo';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Mail, MessageCircle, MapPin, Instagram } from "lucide-react";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
@@ -14,19 +14,21 @@ const Footer = () => {
               <Logo size="md" className="filter brightness-0 invert" />
             </div>
             <p className="text-cream/80 leading-relaxed font-karla font-light max-w-md">
-              Creando experiencias dulces con amor, 
-              ingredientes de temporada y atención personal a cada detalle.
+              Creando experiencias dulces con amor, ingredientes de temporada y
+              atención personal a cada detalle.
             </p>
             <div className="flex items-center space-x-4">
-              <a 
-                href="https://www.instagram.com/cucinanostrard/?hl=en" 
+              <a
+                href="https://www.instagram.com/cucinanostrard/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-cream/80 hover:text-sage transition-colors duration-200"
               >
                 <Instagram className="h-5 w-5" />
               </a>
-              <span className="text-cream/60 font-karla text-sm">@cucinanostrard</span>
+              <span className="text-cream/60 font-karla text-sm">
+                @cucinanostrard
+              </span>
             </div>
           </div>
 
@@ -35,7 +37,7 @@ const Footer = () => {
             <h4 className="text-lg font-cormorant mb-4">Navegación</h4>
             <ul className="space-y-2">
               <li>
-                <Link 
+                <Link
                   to="/"
                   className="text-cream/80 hover:text-sage transition-colors duration-200 font-karla"
                 >
@@ -43,7 +45,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   to="/about"
                   className="text-cream/80 hover:text-sage transition-colors duration-200 font-karla"
                 >
@@ -51,7 +53,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   to="/menu"
                   className="text-cream/80 hover:text-sage transition-colors duration-200 font-karla"
                 >
@@ -59,7 +61,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   to="/gallery"
                   className="text-cream/80 hover:text-sage transition-colors duration-200 font-karla"
                 >
@@ -67,7 +69,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   to="/contact"
                   className="text-cream/80 hover:text-sage transition-colors duration-200 font-karla"
                 >
@@ -83,15 +85,21 @@ const Footer = () => {
             <div className="space-y-2">
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-sage" />
-                <span className="text-cream/80 font-karla text-sm">hello@cucinanostrard.com</span>
+                <span className="text-cream/80 font-karla text-sm">
+                  hello@cucinanostrard.com
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <MessageCircle className="h-4 w-4 text-sage" />
-                <span className="text-cream/80 font-karla text-sm">(809) 555-0123</span>
+                <span className="text-cream/80 font-karla text-sm">
+                  (809) 658-1245
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-sage" />
-                <span className="text-cream/80 font-karla text-sm">Santo Domingo, DR</span>
+                <span className="text-cream/80 font-karla text-sm">
+                  Santo Domingo, DR
+                </span>
               </div>
             </div>
           </div>

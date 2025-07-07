@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Send, Calendar, Users, Heart, MessageCircle } from 'lucide-react';
-import Button from './Button';
-import { sendEmail } from '../services/emailService';
+import React, { useState } from "react";
+import { Send, Calendar, Users, Heart, MessageCircle } from "lucide-react";
+import Button from "./Button";
+import { sendEmail } from "../services/emailService";
 
 interface ContactFormData {
   name: string;
@@ -17,24 +17,28 @@ interface ContactFormData {
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    phone: '',
-    eventType: '',
-    eventDate: '',
-    guests: '',
-    budget: '',
-    message: '',
-    allergies: ''
+    name: "",
+    email: "",
+    phone: "",
+    eventType: "",
+    eventDate: "",
+    guests: "",
+    budget: "",
+    message: "",
+    allergies: "",
   });
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -46,9 +50,9 @@ const ContactForm: React.FC = () => {
       // Add submission timestamp
       const submissionData = {
         ...formData,
-        submittedAt: new Date().toISOString()
+        submittedAt: new Date().toISOString(),
       };
-      
+
       // Map form data to EmailTemplateData format
       const emailData = {
         name: submissionData.name,
@@ -60,39 +64,43 @@ const ContactForm: React.FC = () => {
         message: submissionData.message,
         submittedAt: submissionData.submittedAt,
         allergies: submissionData.allergies,
-        budget: submissionData.budget
+        budget: submissionData.budget,
       };
-      
+
       // Send email using the email service
       const success = await sendEmail(emailData);
-      
+
       setLoading(false);
-      
+
       if (success) {
         setSubmitted(true);
         // Reset form after 3 seconds on success
         setTimeout(() => {
           setSubmitted(false);
           setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            eventType: '',
-            eventDate: '',
-            guests: '',
-            budget: '',
-            message: '',
-            allergies: ''
+            name: "",
+            email: "",
+            phone: "",
+            eventType: "",
+            eventDate: "",
+            guests: "",
+            budget: "",
+            message: "",
+            allergies: "",
           });
         }, 3000);
       } else {
         // Handle error case
-        alert('Hubo un problema al enviar el formulario. Por favor, inténtelo de nuevo.');
+        alert(
+          "Hubo un problema al enviar el formulario. Por favor, inténtelo de nuevo.",
+        );
       }
     } catch (error) {
-      console.error('Error in form submission:', error);
+      console.error("Error in form submission:", error);
       setLoading(false);
-      alert('Hubo un error al procesar su solicitud. Por favor, inténtelo de nuevo.');
+      alert(
+        "Hubo un error al procesar su solicitud. Por favor, inténtelo de nuevo.",
+      );
     }
   };
 
@@ -102,7 +110,9 @@ const ContactForm: React.FC = () => {
         <div className="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4">
           <Heart className="w-8 h-8 text-sage" />
         </div>
-        <h3 className="text-2xl font-cormorant text-mocha mb-4">¡Gracias por tu mensaje!</h3>
+        <h3 className="text-2xl font-cormorant text-mocha mb-4">
+          ¡Gracias por tu mensaje!
+        </h3>
         <p className="text-mocha/70 font-karla">
           Te contactaré pronto para conversar sobre tu dulce celebración.
         </p>
@@ -127,7 +137,7 @@ const ContactForm: React.FC = () => {
             placeholder="Tu nombre"
           />
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-mocha mb-2 font-karla">
             Email *
@@ -155,10 +165,10 @@ const ContactForm: React.FC = () => {
             value={formData.phone}
             onChange={handleChange}
             className="w-full px-4 py-3 rounded-lg border border-sage/20 focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors font-karla"
-            placeholder="(809) 000-0000"
+            placeholder="(809) 658-1245"
           />
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-mocha mb-2 font-karla">
             Tipo de evento *
@@ -195,7 +205,7 @@ const ContactForm: React.FC = () => {
             className="w-full px-4 py-3 rounded-lg border border-sage/20 focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors font-karla"
           />
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-mocha mb-2 font-karla">
             <Users className="inline w-4 h-4 mr-1" />
@@ -270,7 +280,7 @@ const ContactForm: React.FC = () => {
           size="lg"
           className="px-12"
         >
-          {loading ? 'Enviando...' : 'Enviar Consulta'}
+          {loading ? "Enviando..." : "Enviar Consulta"}
         </Button>
         <p className="text-sm text-mocha/60 mt-4 font-karla">
           Te responderé en 24 horas para conversar sobre tu dulce celebración

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Copy, Check } from 'lucide-react';
-import PageTransition from '../components/PageTransition';
-import { OrderTracker, useOrderTracking } from '../components/ui/OrderTracker';
-import { NotificationSystem } from '../components/ui/NotificationSystem';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft, Copy, Check } from "lucide-react";
+import PageTransition from "../components/PageTransition";
+import { OrderTracker, useOrderTracking } from "../components/ui/OrderTracker";
+import { NotificationSystem } from "../components/ui/NotificationSystem";
 
 const OrderTracking = () => {
   const { orderId } = useParams<{ orderId: string }>();
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
-  const [searchOrderId, setSearchOrderId] = useState('');
+  const [searchOrderId, setSearchOrderId] = useState("");
   const [showTracker, setShowTracker] = useState(false);
 
   const {
@@ -17,8 +17,8 @@ const OrderTracking = () => {
     notifications,
     startTracking,
     stopTracking,
-    addNotification
-  } = useOrderTracking(orderId || '');
+    addNotification,
+  } = useOrderTracking(orderId || "");
 
   useEffect(() => {
     if (orderId) {
@@ -45,7 +45,7 @@ const OrderTracking = () => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       } catch (error) {
-        console.error('Failed to copy order ID:', error);
+        console.error("Failed to copy order ID:", error);
       }
     }
   };
@@ -73,7 +73,9 @@ const OrderTracking = () => {
                 <div className="flex items-center space-x-2">
                   <span className="text-sm text-gray-500">ID del pedido:</span>
                   <div className="flex items-center space-x-2 bg-gray-100 px-3 py-1 rounded-lg">
-                    <span className="font-mono text-sm text-gray-900">{orderId}</span>
+                    <span className="font-mono text-sm text-gray-900">
+                      {orderId}
+                    </span>
                     <button
                       onClick={handleCopyOrderId}
                       className="text-gray-400 hover:text-gray-600 transition-colors"
@@ -88,16 +90,18 @@ const OrderTracking = () => {
                   <div
                     className={`flex items-center space-x-1.5 ml-4 px-2.5 py-1 rounded-full text-xs font-medium ${
                       isTracking
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-yellow-100 text-yellow-800'
+                        ? "bg-green-100 text-green-800"
+                        : "bg-yellow-100 text-yellow-800"
                     }`}
                   >
                     <div
                       className={`h-2 w-2 rounded-full ${
-                        isTracking ? 'bg-green-500 animate-pulse' : 'bg-yellow-500'
+                        isTracking
+                          ? "bg-green-500 animate-pulse"
+                          : "bg-yellow-500"
                       }`}
                     />
-                    <span>{isTracking ? 'Rastreando' : 'En espera'}</span>
+                    <span>{isTracking ? "Rastreando" : "En espera"}</span>
                   </div>
                 </div>
               )}
@@ -108,8 +112,9 @@ const OrderTracking = () => {
                 Seguimiento de Pedido
               </h1>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Sigue el progreso de tu pedido en tiempo real. Desde la preparación hasta la entrega,
-                mantente informado de cada paso del proceso.
+                Sigue el progreso de tu pedido en tiempo real. Desde la
+                preparación hasta la entrega, mantente informado de cada paso
+                del proceso.
               </p>
             </div>
           </div>
@@ -150,7 +155,10 @@ const OrderTracking = () => {
                     ¿Necesitas ayuda?
                   </h3>
                   <div className="space-y-2 text-sm text-gray-600">
-                    <p>• El número de pedido se encuentra en tu confirmación por email</p>
+                    <p>
+                      • El número de pedido se encuentra en tu confirmación por
+                      email
+                    </p>
                     <p>• Formato: CNC-YYYY-XXX</p>
                     <p>• Para pedidos antiguos, contacta nuestro soporte</p>
                   </div>
@@ -181,7 +189,8 @@ const OrderTracking = () => {
                 Preguntas Frecuentes
               </h2>
               <p className="text-gray-600">
-                Respuestas rápidas a las preguntas más comunes sobre el seguimiento de pedidos
+                Respuestas rápidas a las preguntas más comunes sobre el
+                seguimiento de pedidos
               </p>
             </div>
 
@@ -191,8 +200,9 @@ const OrderTracking = () => {
                   ¿Cuándo recibiré mi número de seguimiento?
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Recibirás tu número de seguimiento por email inmediatamente después de
-                  confirmar tu pedido. Revisa tu carpeta de spam si no lo encuentras.
+                  Recibirás tu número de seguimiento por email inmediatamente
+                  después de confirmar tu pedido. Revisa tu carpeta de spam si
+                  no lo encuentras.
                 </p>
               </div>
 
@@ -201,8 +211,8 @@ const OrderTracking = () => {
                   ¿Con qué frecuencia se actualiza el estado?
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  El estado se actualiza en tiempo real. Recibirás notificaciones por email
-                  en cada etapa importante del proceso.
+                  El estado se actualiza en tiempo real. Recibirás
+                  notificaciones por email en cada etapa importante del proceso.
                 </p>
               </div>
 
@@ -211,8 +221,9 @@ const OrderTracking = () => {
                   ¿Qué hago si mi pedido se retrasa?
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Los retrasos son raros, pero si ocurren, te notificaremos inmediatamente
-                  con una nueva fecha estimada y explicación del motivo.
+                  Los retrasos son raros, pero si ocurren, te notificaremos
+                  inmediatamente con una nueva fecha estimada y explicación del
+                  motivo.
                 </p>
               </div>
 
@@ -221,8 +232,8 @@ const OrderTracking = () => {
                   ¿Puedo modificar mi pedido después de confirmarlo?
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Las modificaciones son posibles solo antes de que comience la preparación.
-                  Contacta nuestro soporte lo antes posible.
+                  Las modificaciones son posibles solo antes de que comience la
+                  preparación. Contacta nuestro soporte lo antes posible.
                 </p>
               </div>
             </div>
@@ -236,7 +247,8 @@ const OrderTracking = () => {
               ¿Necesitas Ayuda Adicional?
             </h2>
             <p className="mb-6 text-sage-100">
-              Nuestro equipo está aquí para ayudarte con cualquier pregunta sobre tu pedido
+              Nuestro equipo está aquí para ayudarte con cualquier pregunta
+              sobre tu pedido
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -252,7 +264,7 @@ const OrderTracking = () => {
                 Llamar Soporte
               </a>
               <a
-                href="https://wa.me/1234567890"
+                href="https://wa.me/18096581245"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors font-medium"

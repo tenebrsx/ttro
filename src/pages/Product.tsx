@@ -67,7 +67,7 @@ const Product: React.FC = () => {
         `¿Podrías confirmarme la disponibilidad y coordinar los detalles?`,
     );
 
-    window.open(`https://wa.me/8095550123?text=${message}`, "_blank");
+    window.open(`https://wa.me/18096581245?text=${message}`, "_blank");
   };
 
   const toggleCustomization = (customization: string) => {

@@ -24,7 +24,7 @@ const Cart: FC = () => {
 
     const message = `¡Hola! Me gustaría hacer el siguiente pedido:\n\n${orderDetails}\n\nTotal: ${formatPrice(total)}\n\n¡Gracias!`;
 
-    const whatsappUrl = `https://wa.me/18092345678?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/18096581245?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
 

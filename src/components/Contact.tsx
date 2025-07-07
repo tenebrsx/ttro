@@ -1,60 +1,71 @@
-import { useState } from 'react';
-import { Mail, MapPin, Send, MessageCircle, Heart } from 'lucide-react';
+import { useState } from "react";
+import { Mail, MapPin, Send, MessageCircle, Heart } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    eventType: '',
-    eventDate: '',
-    guests: '',
-    style: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    eventType: "",
+    eventDate: "",
+    guests: "",
+    style: "",
+    message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      eventType: '',
-      eventDate: '',
-      guests: '',
-      style: '',
-      message: ''
+      name: "",
+      email: "",
+      phone: "",
+      eventType: "",
+      eventDate: "",
+      guests: "",
+      style: "",
+      message: "",
     });
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-cream via-white to-cream bg-texture">
+    <section
+      id="contact"
+      className="py-20 bg-gradient-to-br from-cream via-white to-cream bg-texture"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-6">
             <div className="w-16 h-px bg-sage/40"></div>
-            <span className="mx-4 text-sm font-karla text-sage/70 uppercase tracking-wider">Creaciones Únicas</span>
+            <span className="mx-4 text-sm font-karla text-sage/70 uppercase tracking-wider">
+              Creaciones Únicas
+            </span>
             <div className="w-16 h-px bg-sage/40"></div>
           </div>
-          
+
           <h2 className="text-4xl sm:text-5xl font-cormorant text-mocha mb-6 text-shadow-soft">
             Convirtamos Tu Sueño en Realidad
           </h2>
-          
+
           <div className="w-24 h-px bg-sage/40 mx-auto mb-6"></div>
-          
+
           <p className="text-lg text-mocha/70 max-w-2xl mx-auto font-karla font-light leading-relaxed">
-            Cada pedido especial comienza con una conversación íntima sobre tu momento único.
+            Cada pedido especial comienza con una conversación íntima sobre tu
+            momento único.
             <span className="block mt-2 italic text-mocha/60">
-              Porque los detalles perfectos nacen cuando dos corazones se encuentran.
+              Porque los detalles perfectos nacen cuando dos corazones se
+              encuentran.
             </span>
           </p>
         </div>
@@ -72,27 +83,35 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-mocha font-medium font-karla">Email</p>
-                    <p className="text-mocha/70 font-karla">hello@cucinanostrard.com</p>
+                    <p className="text-mocha/70 font-karla">
+                      hello@cucinanostrard.com
+                    </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-4 group">
                   <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center shadow-gentle group-hover:shadow-warm transition-all duration-300">
                     <MessageCircle className="h-6 w-6 text-sage" />
                   </div>
                   <div>
-                    <p className="text-mocha font-medium font-karla">WhatsApp</p>
-                    <p className="text-mocha/70 font-karla">(809) 555-0123</p>
+                    <p className="text-mocha font-medium font-karla">
+                      WhatsApp
+                    </p>
+                    <p className="text-mocha/70 font-karla">(809) 658-1245</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-4 group">
                   <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center shadow-gentle group-hover:shadow-warm transition-all duration-300">
                     <MapPin className="h-6 w-6 text-sage" />
                   </div>
                   <div>
-                    <p className="text-mocha font-medium font-karla">Ubicación</p>
-                    <p className="text-mocha/70 font-karla">Santo Domingo, RD</p>
+                    <p className="text-mocha font-medium font-karla">
+                      Ubicación
+                    </p>
+                    <p className="text-mocha/70 font-karla">
+                      Santo Domingo, RD
+                    </p>
                   </div>
                 </div>
               </div>
@@ -101,12 +120,14 @@ const Contact = () => {
             <div className="bg-sage/10 p-6 rounded-lg shadow-gentle">
               <div className="flex items-center mb-4">
                 <Heart className="h-5 w-5 text-sage mr-2" />
-                <h4 className="text-lg font-cormorant text-mocha">Una Promesa Personal</h4>
+                <h4 className="text-lg font-cormorant text-mocha">
+                  Una Promesa Personal
+                </h4>
               </div>
               <p className="text-mocha/70 font-karla font-light leading-relaxed">
-                Tu celebración será única, como tú. Cada detalle será cuidadosamente 
-                pensado para crear no solo un postre, sino una experiencia que perdure 
-                en el corazón de quienes amas.
+                Tu celebración será única, como tú. Cada detalle será
+                cuidadosamente pensado para crear no solo un postre, sino una
+                experiencia que perdure en el corazón de quienes amas.
               </p>
             </div>
           </div>
@@ -115,11 +136,14 @@ const Contact = () => {
             <h3 className="text-2xl font-cormorant text-mocha mb-6 text-shadow-soft">
               Cuéntame Tu Historia
             </h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-mocha mb-2 font-karla">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-mocha mb-2 font-karla"
+                  >
                     Tu Nombre *
                   </label>
                   <input
@@ -133,9 +157,12 @@ const Contact = () => {
                     placeholder="¿Cómo te llamas?"
                   />
                 </div>
-                
+
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-mocha mb-2 font-karla">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-mocha mb-2 font-karla"
+                  >
                     Email *
                   </label>
                   <input
@@ -152,7 +179,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="eventType" className="block text-sm font-medium text-mocha mb-2 font-karla">
+                <label
+                  htmlFor="eventType"
+                  className="block text-sm font-medium text-mocha mb-2 font-karla"
+                >
                   Tipo de Celebración
                 </label>
                 <select
@@ -174,7 +204,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-mocha mb-2 font-karla">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-mocha mb-2 font-karla"
+                >
                   Comparte Tu Visión
                 </label>
                 <textarea

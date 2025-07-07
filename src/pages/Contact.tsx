@@ -45,7 +45,7 @@ const Contact = () => {
     const message = encodeURIComponent(
       "¡Hola! Me gustaría hacer una consulta sobre un pedido personalizado para mi evento especial. ¿Podrías ayudarme con los detalles?",
     );
-    window.open(`https://wa.me/8095550123?text=${message}`, "_blank");
+    window.open(`https://wa.me/18096581245?text=${message}`, "_blank");
   };
 
   const eventTypes = [
@@ -63,8 +63,8 @@ const Contact = () => {
     {
       icon: <Phone className="w-5 h-5" />,
       title: "Teléfono",
-      value: "+1 (809) 555-0123",
-      href: "tel:+18095550123",
+      value: "+1 (809) 658-1245",
+      href: "tel:+18096581245",
     },
     {
       icon: <Mail className="w-5 h-5" />,
@@ -188,7 +188,7 @@ const Contact = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 rounded-lg border border-dusty-rose/20 focus:border-dusty-rose focus:ring-2 focus:ring-dusty-rose/20 outline-none transition-colors font-source-serif"
-                        placeholder="(809) 555-0123"
+                        placeholder="(809) 658-1245"
                         required
                       />
                     </div>

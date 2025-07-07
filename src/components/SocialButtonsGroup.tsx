@@ -4,7 +4,7 @@ import { Instagram, MessageCircle } from "lucide-react";
 
 const SocialButtonsGroup = () => {
   const handleWhatsApp = () => {
-    const phoneNumber = "18095550123";
+    const phoneNumber = "18096581245";
     const message =
       "¡Hola! Me interesa conocer más sobre sus postres artesanales.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

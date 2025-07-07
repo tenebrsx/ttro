@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Phone, Mail, Instagram, Plus, X } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MessageCircle, Phone, Mail, Instagram, Plus, X } from "lucide-react";
 
 interface ContactAction {
   id: string;
@@ -15,44 +15,51 @@ const FloatingActionButton: React.FC = () => {
 
   const contactActions: ContactAction[] = [
     {
-      id: 'whatsapp',
-      label: 'WhatsApp',
+      id: "whatsapp",
+      label: "WhatsApp",
       icon: <MessageCircle className="w-5 h-5" />,
-      color: 'bg-green-500 hover:bg-green-600',
+      color: "bg-green-500 hover:bg-green-600",
       action: () => {
-        const phoneNumber = "18095550123";
-        const message = "¡Hola! Me interesa conocer más sobre sus postres artesanales. ¿Podrían ayudarme con información sobre pedidos personalizados?";
+        const phoneNumber = "18096581245";
+        const message =
+          "¡Hola! Me interesa conocer más sobre sus postres artesanales. ¿Podrían ayudarme con información sobre pedidos personalizados?";
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-      }
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      },
     },
     {
-      id: 'phone',
-      label: 'Llamar',
+      id: "phone",
+      label: "Llamar",
       icon: <Phone className="w-5 h-5" />,
-      color: 'bg-blue-500 hover:bg-blue-600',
+      color: "bg-blue-500 hover:bg-blue-600",
       action: () => {
-        window.location.href = 'tel:+18095550123';
-      }
+        window.location.href = "tel:+18096581245";
+      },
     },
     {
-      id: 'email',
-      label: 'Email',
+      id: "email",
+      label: "Email",
       icon: <Mail className="w-5 h-5" />,
-      color: 'bg-dusty-rose hover:bg-mocha',
+      color: "bg-dusty-rose hover:bg-mocha",
       action: () => {
-        window.location.href = 'mailto:hello@cucinanostrard.com?subject=Consulta sobre postres artesanales&body=Hola, me gustaría obtener más información sobre sus servicios de postres personalizados.';
-      }
+        window.location.href =
+          "mailto:hello@cucinanostrard.com?subject=Consulta sobre postres artesanales&body=Hola, me gustaría obtener más información sobre sus servicios de postres personalizados.";
+      },
     },
     {
-      id: 'instagram',
-      label: 'Instagram',
+      id: "instagram",
+      label: "Instagram",
       icon: <Instagram className="w-5 h-5" />,
-      color: 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600',
+      color:
+        "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600",
       action: () => {
-        window.open('https://www.instagram.com/cucinanostrard/?hl=en', '_blank', 'noopener,noreferrer');
-      }
-    }
+        window.open(
+          "https://www.instagram.com/cucinanostrard/?hl=en",
+          "_blank",
+          "noopener,noreferrer",
+        );
+      },
+    },
   ];
 
   const toggleMenu = () => {
@@ -83,7 +90,7 @@ const FloatingActionButton: React.FC = () => {
                   delay: index * 0.1,
                   type: "spring",
                   stiffness: 300,
-                  damping: 20
+                  damping: 20,
                 }}
               >
                 {/* Label */}
