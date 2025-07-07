@@ -127,7 +127,7 @@ const Cart: FC = () => {
                         className="w-20 h-20 object-cover rounded-lg"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = "/images/fallback-dessert.jpg";
+                          target.src = "/images/placeholder-dessert.jpg";
                         }}
                       />
 

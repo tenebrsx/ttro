@@ -107,6 +107,10 @@ const Menu = () => {
                     src={dish.image}
                     alt={dish.name}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/images/placeholder-dessert.jpg";
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-mocha/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>

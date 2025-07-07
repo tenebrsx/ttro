@@ -141,7 +141,7 @@ const MobileCart: React.FC = () => {
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
                                   e.currentTarget.src =
-                                    "/images/fallback-dessert.jpg";
+                                    "/images/placeholder-dessert.jpg";
                                 }}
                               />
                             </div>

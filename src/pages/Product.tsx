@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import PageTransition from "../components/PageTransition";
+import OptimizedImage from "../components/OptimizedImage";
 import { formatPrice } from "../utils/currency";
 import { products, getProductById } from "../data/products";
 import type { Product as ProductType } from "../data/products";
@@ -146,17 +147,17 @@ const Product: React.FC = () => {
                 <div className="space-y-4">
                   {/* Main Image */}
                   <div className="aspect-square rounded-3xl overflow-hidden shadow-gentle bg-gradient-to-br from-dusty-rose/10 to-cream/20">
-                    {product.images[selectedImage] ? (
-                      <img
-                        src={product.images[selectedImage]}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <ChefHat className="w-24 h-24 text-dusty-rose/40" />
-                      </div>
-                    )}
+                    <OptimizedImage
+                      src={
+                        product.images[selectedImage] ||
+                        "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+                      }
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                      aspectRatio="square"
+                      priority={true}
+                      fallbackSrc="https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+                    />
                   </div>
 
                   {/* Thumbnail Images */}
@@ -172,10 +173,15 @@ const Product: React.FC = () => {
                               : "border-transparent"
                           }`}
                         >
-                          <img
-                            src={image}
+                          <OptimizedImage
+                            src={
+                              image ||
+                              "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+                            }
                             alt={`${product.name} ${index + 1}`}
                             className="w-full h-full object-cover"
+                            aspectRatio="square"
+                            fallbackSrc="https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
                           />
                         </button>
                       ))}
@@ -567,10 +573,15 @@ const Product: React.FC = () => {
                         className="block bg-white rounded-2xl shadow-gentle hover:shadow-soft transition-shadow overflow-hidden border border-dusty-rose/10 group"
                       >
                         <div className="aspect-square bg-gradient-to-br from-dusty-rose/10 to-cream/20 overflow-hidden">
-                          <img
-                            src={relatedProduct.thumbnailImage}
+                          <OptimizedImage
+                            src={
+                              relatedProduct.thumbnailImage ||
+                              "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+                            }
                             alt={relatedProduct.name}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            aspectRatio="square"
+                            fallbackSrc="https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
                           />
                         </div>
                         <div className="p-6">

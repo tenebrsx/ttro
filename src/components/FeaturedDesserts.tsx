@@ -13,10 +13,10 @@ const FeaturedDesserts = () => {
 
   const featuredDesserts = [
     {
-      id: "tarta-earl-grey-lavanda",
-      name: "Torta Earl Grey Lavanda",
+      id: "tarta-chocolate-premium",
+      name: "Tarta de Chocolate Premium",
       description:
-        "El aroma de bergamota se encuentra con la delicadeza de la lavanda en un bizcocho que susurra historias de jardines ingleses.",
+        "Exquisita tarta de chocolate belga con capas de ganache sedoso, crema de vainilla Madagascar y decoración de frutos rojos frescos.",
       image:
         "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
       price: 45,
@@ -24,37 +24,37 @@ const FeaturedDesserts = () => {
       story: "Perfecta para celebrar momentos íntimos",
       rating: 5,
       preparationTime: "2-3 días",
-      tags: ["Elegante", "Especial"],
+      tags: ["Premium", "Chocolate"],
       popularity: "bestseller" as const,
     },
     {
-      id: "tartaletas-limon-tomillo",
-      name: "Tartaletas de Limón y Tomillo",
+      id: "macarons-franceses-clasicos",
+      name: "Macarons Franceses Clásicos",
       description:
-        "Cada bocado es como caminar descalza por el jardín al amanecer: fresco, vibrante y lleno de promesas.",
+        "Caja de 12 macarons auténticos franceses elaborados con técnica tradicional. Incluye sabores clásicos: vainilla, chocolate, fresa, limón, pistacho y lavanda.",
       image:
         "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      price: 30,
-      priceDisplay: formatPriceFromWithQuantity(30, "docena"),
-      story: "Ideales para reuniones familiares",
+      price: 24,
+      priceDisplay: formatPriceFromWithQuantity(24, "docena"),
+      story: "Perfectos para regalar o disfrutar en una ocasión especial",
       rating: 5,
       preparationTime: "1-2 días",
-      tags: ["Fresco", "Natural"],
+      tags: ["Auténtico", "Francés"],
       popularity: "seasonal" as const,
     },
     {
-      id: "macarons-almendra-rosa",
-      name: "Macarons de Almendra y Rosa",
+      id: "tiramisu-individual-premium",
+      name: "Tiramisú Individual Premium",
       description:
-        "Delicados como pétalos de rosa, crujientes como un primer beso, suaves como un abrazo maternal.",
+        "Auténtico tiramisú italiano servido en elegantes copas individuales. Elaborado con mascarpone italiano, café espresso dominicano y cacao importado.",
       image:
         "https://images.pexels.com/photos/1028704/pexels-photo-1028704.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      price: 40,
-      priceDisplay: formatPriceFromWithQuantity(40, "docena"),
-      story: "Para esos momentos que merecen ser inolvidables",
+      price: 12,
+      priceDisplay: formatPriceFrom(12),
+      story: "Una experiencia gourmet que transporta directamente a Italia",
       rating: 5,
-      preparationTime: "2-3 días",
-      tags: ["Delicado", "Romántico"],
+      preparationTime: "1-2 días",
+      tags: ["Italiano", "Premium"],
       popularity: "trending" as const,
     },
   ];

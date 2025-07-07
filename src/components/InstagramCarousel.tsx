@@ -78,7 +78,7 @@ const InstagramCarousel = () => {
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>,
   ) => {
-    e.currentTarget.src = "/images/fallback-dessert.jpg";
+    e.currentTarget.src = "/images/placeholder-dessert.jpg";
   };
 
   useEffect(() => {
@@ -167,7 +167,7 @@ const InstagramCarousel = () => {
                     alt={posts[currentSlide].caption}
                     className="w-full h-full object-cover"
                     onError={handleImageError}
-                    fallbackSrc="/images/fallback-dessert.jpg"
+                    fallbackSrc="/images/placeholder-dessert.jpg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </motion.div>
