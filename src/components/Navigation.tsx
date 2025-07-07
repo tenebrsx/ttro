@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Globe } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, ShoppingBag } from "lucide-react";
 import Logo from "./Logo";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "../contexts/CartContext";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState("es"); // 'es' for Spanish, 'en' for English
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // Safe cart context usage with fallback
+  let itemCount = 0;
+
+  try {
+    const cartContext = useCart();
+    itemCount = cartContext.itemCount;
+  } catch (error) {
+    console.warn("Cart context not available:", error);
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +63,7 @@ const Navigation = () => {
                   : "text-mocha hover:text-dusty-rose"
               }`}
             >
-              {currentLanguage === "es" ? "Inicio" : "Home"}
+              Inicio
             </Link>
             <Link
               to="/about"
@@ -63,7 +73,7 @@ const Navigation = () => {
                   : "text-mocha hover:text-dusty-rose"
               }`}
             >
-              {currentLanguage === "es" ? "Acerca de" : "About"}
+              Acerca de
             </Link>
             <Link
               to="/menu"
@@ -73,7 +83,7 @@ const Navigation = () => {
                   : "text-mocha hover:text-dusty-rose"
               }`}
             >
-              {currentLanguage === "es" ? "Menú" : "Menu"}
+              Menú
             </Link>
             <Link
               to="/gallery"
@@ -83,65 +93,27 @@ const Navigation = () => {
                   : "text-mocha hover:text-dusty-rose"
               }`}
             >
-              {currentLanguage === "es" ? "Galería" : "Gallery"}
+              Galería
             </Link>
             <Link
               to="/contact"
               className="bg-dusty-rose text-cream px-4 py-2 rounded-full hover:bg-mocha transition-all duration-300 transform hover:scale-105 font-karla"
             >
-              {currentLanguage === "es"
-                ? "Pedidos Personalizados"
-                : "Custom Orders"}
+              Pedidos Personalizados
             </Link>
 
-            {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-                className="flex items-center space-x-1 text-mocha hover:text-dusty-rose transition-colors duration-200 p-1 rounded-full hover:bg-dusty-rose/10"
-                aria-label="Change language"
-              >
-                <Globe className="h-5 w-5" />
-                <span className="text-sm font-karla">
-                  {currentLanguage === "es" ? "ES" : "EN"}
+            {/* Desktop Cart Button */}
+            <button
+              onClick={() => navigate("/cart")}
+              className="relative p-2 text-mocha hover:text-dusty-rose transition-colors duration-200 rounded-full hover:bg-dusty-rose/10"
+            >
+              <ShoppingBag className="h-5 w-5" />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-dusty-rose text-white text-xs font-karla font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                  {itemCount > 9 ? "9+" : itemCount}
                 </span>
-              </button>
-
-              <AnimatePresence>
-                {isLanguageMenuOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg overflow-hidden z-50 border border-sage/10"
-                  >
-                    <button
-                      onClick={() => {
-                        setCurrentLanguage("es");
-                        setIsLanguageMenuOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2 text-sm font-karla ${currentLanguage === "es" ? "bg-dusty-rose/10 text-dusty-rose" : "text-mocha hover:bg-dusty-rose/5 hover:text-dusty-rose"}`}
-                    >
-                      <span className="flex items-center">
-                        <span className="mr-2">🇪🇸</span> Español
-                      </span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        setCurrentLanguage("en");
-                        setIsLanguageMenuOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2 text-sm font-karla ${currentLanguage === "en" ? "bg-dusty-rose/10 text-dusty-rose" : "text-mocha hover:bg-dusty-rose/5 hover:text-dusty-rose"}`}
-                    >
-                      <span className="flex items-center">
-                        <span className="mr-2">🇺🇸</span> English
-                      </span>
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+              )}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -178,7 +150,7 @@ const Navigation = () => {
                       : "text-mocha hover:text-dusty-rose hover:bg-dusty-rose/5"
                   }`}
                 >
-                  {currentLanguage === "es" ? "Inicio" : "Home"}
+                  Inicio
                 </Link>
                 <Link
                   to="/about"
@@ -188,7 +160,7 @@ const Navigation = () => {
                       : "text-mocha hover:text-dusty-rose hover:bg-dusty-rose/5"
                   }`}
                 >
-                  {currentLanguage === "es" ? "Acerca de" : "About"}
+                  Acerca de
                 </Link>
                 <Link
                   to="/menu"
@@ -198,7 +170,7 @@ const Navigation = () => {
                       : "text-mocha hover:text-dusty-rose hover:bg-dusty-rose/5"
                   }`}
                 >
-                  {currentLanguage === "es" ? "Menú" : "Menu"}
+                  Menú
                 </Link>
                 <Link
                   to="/gallery"
@@ -208,37 +180,28 @@ const Navigation = () => {
                       : "text-mocha hover:text-dusty-rose hover:bg-dusty-rose/5"
                   }`}
                 >
-                  {currentLanguage === "es" ? "Galería" : "Gallery"}
+                  Galería
                 </Link>
                 <Link
                   to="/contact"
                   className="block w-full text-left px-3 py-2 bg-dusty-rose text-cream rounded-lg hover:bg-mocha transition-colors duration-200 font-karla mt-2"
                 >
-                  {currentLanguage === "es"
-                    ? "Pedidos Personalizados"
-                    : "Custom Orders"}
+                  Pedidos Personalizados
                 </Link>
 
-                {/* Language Selector for Mobile */}
-                <div className="mt-4 pt-3 border-t border-warm-blush/20">
-                  <p className="px-3 text-xs text-mocha/60 uppercase tracking-wider font-karla mb-2">
-                    {currentLanguage === "es" ? "Idioma" : "Language"}
-                  </p>
-                  <div className="flex space-x-2 px-3">
-                    <button
-                      onClick={() => setCurrentLanguage("es")}
-                      className={`flex items-center px-3 py-2 rounded-lg text-sm ${currentLanguage === "es" ? "bg-dusty-rose/10 text-dusty-rose" : "bg-white/50 text-mocha hover:bg-dusty-rose/5"}`}
-                    >
-                      <span className="mr-2">🇪🇸</span> Español
-                    </button>
-                    <button
-                      onClick={() => setCurrentLanguage("en")}
-                      className={`flex items-center px-3 py-2 rounded-lg text-sm ${currentLanguage === "en" ? "bg-dusty-rose/10 text-dusty-rose" : "bg-white/50 text-mocha hover:bg-dusty-rose/5"}`}
-                    >
-                      <span className="mr-2">🇺🇸</span> English
-                    </button>
-                  </div>
-                </div>
+                {/* Mobile Cart Button */}
+                <button
+                  onClick={() => navigate("/cart")}
+                  className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-mocha hover:text-dusty-rose hover:bg-dusty-rose/5 transition-colors duration-200 font-karla mt-2 rounded-lg"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  <span>Mi Carrito</span>
+                  {itemCount > 0 && (
+                    <span className="bg-dusty-rose text-white text-xs px-2 py-1 rounded-full">
+                      {itemCount}
+                    </span>
+                  )}
+                </button>
               </div>
             </motion.div>
           )}
