@@ -447,7 +447,7 @@ export const useDessertNotifications = () => {
   };
 
   const cookieNotice = () => {
-    return notifications.info(
+    const notificationId = notifications.info(
       "Cookies & Dulces",
       "Usamos cookies para mejorar tu experiencia (¡solo las digitales, las reales las hacemos por pedido!).",
       {
@@ -456,11 +456,12 @@ export const useDessertNotifications = () => {
           label: "Entiendo",
           onClick: () => {
             localStorage.setItem("cookies-accepted", "true");
-            notifications.removeNotification();
+            notifications.removeNotification(notificationId);
           },
         },
       },
     );
+    return notificationId;
   };
 
   return {

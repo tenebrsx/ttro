@@ -61,7 +61,7 @@ export const WhatsAppIntegration: React.FC<WhatsAppIntegrationProps> = ({
   businessName = "Cucinanostrard",
   products = [],
   enableCatalog = true,
-  enableQuickOrder = true,
+  enableQuickOrder = true, // eslint-disable-line @typescript-eslint/no-unused-vars
   showPaymentInfo = true,
 }) => {
   const [selectedProducts, setSelectedProducts] = useState<
@@ -156,8 +156,8 @@ export const WhatsAppIntegration: React.FC<WhatsAppIntegrationProps> = ({
         break;
 
       case "order":
-        if (data) {
-          message = generateOrderMessage(data);
+        if (data && "items" in data) {
+          message = generateOrderMessage(data as WhatsAppOrder);
         }
         break;
     }

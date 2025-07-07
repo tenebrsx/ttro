@@ -315,7 +315,11 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setSelectedTab(tab.id)}
+              onClick={() =>
+                setSelectedTab(
+                  tab.id as "reviews" | "certifications" | "metrics",
+                )
+              }
               className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                 selectedTab === tab.id
                   ? "bg-white shadow-sm text-sage"
