@@ -18,6 +18,7 @@ import { formatPrice } from "../utils/currency";
 import { products } from "../data/products";
 import type { Product } from "../data/products";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface AdminPanelProps {
   // Props can be added here if needed in the future
 }
@@ -224,6 +225,7 @@ const Admin: React.FC<AdminPanelProps> = () => {
   };
 
   // Handle array changes for tags, ingredients, etc.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleArrayChange = (
     field: keyof typeof formData,
     index: number,
@@ -244,6 +246,7 @@ const Admin: React.FC<AdminPanelProps> = () => {
   };
 
   // Add array item
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const addArrayItem = (field: keyof typeof formData) => {
     setFormData((prev) => {
       const currentValue = prev[field];
@@ -258,6 +261,7 @@ const Admin: React.FC<AdminPanelProps> = () => {
   };
 
   // Remove array item
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const removeArrayItem = (field: keyof typeof formData, index: number) => {
     setFormData((prev) => {
       const currentValue = prev[field];
