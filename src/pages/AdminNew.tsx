@@ -18,8 +18,9 @@ import { formatPrice } from "../utils/currency";
 import { products } from "../data/products";
 import type { Product } from "../data/products";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface AdminPanelProps {}
+interface AdminPanelProps {
+  // Props can be added here if needed in the future
+}
 
 const Admin: React.FC<AdminPanelProps> = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -223,31 +224,51 @@ const Admin: React.FC<AdminPanelProps> = () => {
   };
 
   // Handle array changes for tags, ingredients, etc.
-  const handleArrayChange = (field: string, index: number, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: prev[field as keyof typeof prev].map(
-        (item: string, i: number) => (i === index ? value : item),
-      ),
-    }));
+  const handleArrayChange = (
+    field: keyof typeof formData,
+    index: number,
+    value: string,
+  ) => {
+    setFormData((prev) => {
+      const currentValue = prev[field];
+      if (Array.isArray(currentValue)) {
+        return {
+          ...prev,
+          [field]: currentValue.map((item: string, i: number) =>
+            i === index ? value : item,
+          ),
+        };
+      }
+      return prev;
+    });
   };
 
   // Add array item
-  const addArrayItem = (field: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: [...prev[field as keyof typeof prev], ""],
-    }));
+  const addArrayItem = (field: keyof typeof formData) => {
+    setFormData((prev) => {
+      const currentValue = prev[field];
+      if (Array.isArray(currentValue)) {
+        return {
+          ...prev,
+          [field]: [...currentValue, ""],
+        };
+      }
+      return prev;
+    });
   };
 
   // Remove array item
-  const removeArrayItem = (field: string, index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: prev[field as keyof typeof prev].filter(
-        (_: string, i: number) => i !== index,
-      ),
-    }));
+  const removeArrayItem = (field: keyof typeof formData, index: number) => {
+    setFormData((prev) => {
+      const currentValue = prev[field];
+      if (Array.isArray(currentValue)) {
+        return {
+          ...prev,
+          [field]: currentValue.filter((_: string, i: number) => i !== index),
+        };
+      }
+      return prev;
+    });
   };
 
   // Edit dessert
