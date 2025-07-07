@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const AboutPreview = () => {
@@ -53,9 +52,9 @@ const AboutPreview = () => {
 
             <div className="mt-10 p-6 bg-white/40 backdrop-blur-sm rounded-2xl border border-dusty-rose/10">
               <blockquote className="text-2xl font-cormorant text-dusty-rose italic text-center">
-                "No solo horneo—
+                &ldquo;No solo horneo&mdash;
                 <span className="block mt-1">
-                  creo pequeños momentos comestibles."
+                  creo pequeños momentos comestibles.&rdquo;
                 </span>
               </blockquote>
             </div>

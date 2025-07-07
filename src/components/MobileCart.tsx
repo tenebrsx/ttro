@@ -1,37 +1,55 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Plus, Minus, ShoppingBag, MessageCircle, Trash2 } from 'lucide-react';
-import { useCart } from '../contexts/CartContext';
-import { formatPrice } from '../utils/currency';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  Plus,
+  Minus,
+  ShoppingBag,
+  MessageCircle,
+  Trash2,
+} from "lucide-react";
+import { useCart } from "../contexts/CartContext";
+import { formatPrice } from "../utils/currency";
 
 const MobileCart: React.FC = () => {
-  const { items, isOpen, total, itemCount, updateQuantity, removeItem, closeCart, clearCart } = useCart();
+  const {
+    items,
+    isOpen,
+    total,
+    itemCount,
+    updateQuantity,
+    removeItem,
+    closeCart,
+    clearCart,
+  } = useCart();
 
   const generateWhatsAppMessage = () => {
-    const businessPhone = '+1809XXXXXXX'; // Replace with actual WhatsApp business number
+    const businessPhone = "+1809XXXXXXX"; // Replace with actual WhatsApp business number
 
-    let message = '¡Hola! Me gustaría hacer un pedido de los siguientes postres:\n\n';
+    let message =
+      "¡Hola! Me gustaría hacer un pedido de los siguientes postres:\n\n";
 
     items.forEach((item, index) => {
       message += `${index + 1}. ${item.name}\n`;
       message += `   Cantidad: ${item.quantity}\n`;
       message += `   Precio: ${formatPrice(item.price)}\n`;
       if (item.customizations && item.customizations.length > 0) {
-        message += `   Personalizaciones: ${item.customizations.join(', ')}\n`;
+        message += `   Personalizaciones: ${item.customizations.join(", ")}\n`;
       }
       if (item.notes) {
         message += `   Notas: ${item.notes}\n`;
       }
-      message += '\n';
+      message += "\n";
     });
 
     message += `Total: ${formatPrice(total)}\n\n`;
-    message += 'Por favor, confírmenme la disponibilidad y el tiempo de preparación. ¡Gracias!';
+    message +=
+      "Por favor, confírmenme la disponibilidad y el tiempo de preparación. ¡Gracias!";
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${businessPhone}?text=${encodedMessage}`;
 
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
     clearCart();
     closeCart();
   };
@@ -51,10 +69,10 @@ const MobileCart: React.FC = () => {
 
           {/* Cart Drawer */}
           <motion.div
-            initial={{ x: '100%' }}
+            initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed right-0 top-0 h-full w-full max-w-sm bg-white z-50 lg:hidden shadow-2xl"
           >
             {/* Header */}
@@ -91,7 +109,8 @@ const MobileCart: React.FC = () => {
                     Tu carrito está vacío
                   </h3>
                   <p className="text-mocha/60 font-karla text-sm mb-6">
-                    Descubre nuestros deliciosos postres y agrega algunos a tu carrito
+                    Descubre nuestros deliciosos postres y agrega algunos a tu
+                    carrito
                   </p>
                   <button
                     onClick={closeCart}
@@ -121,7 +140,8 @@ const MobileCart: React.FC = () => {
                                 alt={item.name}
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
-                                  e.currentTarget.src = '/images/placeholder-dessert.jpg';
+                                  e.currentTarget.src =
+                                    "/images/placeholder-dessert.jpg";
                                 }}
                               />
                             </div>
@@ -136,19 +156,20 @@ const MobileCart: React.FC = () => {
                               </p>
 
                               {/* Customizations */}
-                              {item.customizations && item.customizations.length > 0 && (
-                                <div className="mb-2">
-                                  <p className="text-xs text-mocha/60 font-karla">
-                                    {item.customizations.join(', ')}
-                                  </p>
-                                </div>
-                              )}
+                              {item.customizations &&
+                                item.customizations.length > 0 && (
+                                  <div className="mb-2">
+                                    <p className="text-xs text-mocha/60 font-karla">
+                                      {item.customizations.join(", ")}
+                                    </p>
+                                  </div>
+                                )}
 
                               {/* Notes */}
                               {item.notes && (
                                 <div className="mb-2">
                                   <p className="text-xs text-mocha/60 font-karla italic">
-                                    "{item.notes}"
+                                    &ldquo;{item.notes}&rdquo;
                                   </p>
                                 </div>
                               )}
@@ -157,7 +178,9 @@ const MobileCart: React.FC = () => {
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-2">
                                   <button
-                                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                    onClick={() =>
+                                      updateQuantity(item.id, item.quantity - 1)
+                                    }
                                     className="w-7 h-7 rounded-full bg-dusty-rose/10 flex items-center justify-center text-dusty-rose hover:bg-dusty-rose hover:text-white transition-colors"
                                   >
                                     <Minus className="w-3 h-3" />
@@ -168,7 +191,9 @@ const MobileCart: React.FC = () => {
                                   </span>
 
                                   <button
-                                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                    onClick={() =>
+                                      updateQuantity(item.id, item.quantity + 1)
+                                    }
                                     className="w-7 h-7 rounded-full bg-dusty-rose/10 flex items-center justify-center text-dusty-rose hover:bg-dusty-rose hover:text-white transition-colors"
                                   >
                                     <Plus className="w-3 h-3" />
@@ -193,7 +218,9 @@ const MobileCart: React.FC = () => {
                   <div className="border-t border-dusty-rose/20 p-4 bg-cream/30">
                     {/* Total */}
                     <div className="flex items-center justify-between mb-4">
-                      <span className="font-cormorant text-lg text-mocha">Total:</span>
+                      <span className="font-cormorant text-lg text-mocha">
+                        Total:
+                      </span>
                       <span className="font-cormorant text-xl text-dusty-rose font-medium">
                         {formatPrice(total)}
                       </span>
@@ -202,7 +229,8 @@ const MobileCart: React.FC = () => {
                     {/* Delivery Note */}
                     <div className="bg-warm-blush/20 border border-warm-blush/30 rounded-xl p-3 mb-4">
                       <p className="text-xs text-mocha/70 font-karla text-center">
-                        📍 Los pedidos se coordinan por WhatsApp para confirmar disponibilidad y tiempo de entrega
+                        📍 Los pedidos se coordinan por WhatsApp para confirmar
+                        disponibilidad y tiempo de entrega
                       </p>
                     </div>
 

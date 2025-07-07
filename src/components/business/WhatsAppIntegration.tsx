@@ -8,14 +8,10 @@ import {
   MapPin,
   CreditCard,
   Banknote,
-  Share2,
   Copy,
   Check,
-  Calendar,
   User,
   ShoppingCart,
-  Heart,
-  Star,
   Info,
 } from "lucide-react";
 
@@ -141,7 +137,7 @@ export const WhatsAppIntegration: React.FC<WhatsAppIntegrationProps> = ({
 
   const generateWhatsAppMessage = (
     type: "catalog" | "quick_order" | "inquiry" | "order",
-    data?: any,
+    data?: WhatsAppOrder | WhatsAppProduct | null,
   ) => {
     const baseUrl = `https://wa.me/${businessPhone.replace(/[^\d]/g, "")}`;
     let message = "";

@@ -18,10 +18,7 @@ import { formatPrice } from "../utils/currency";
 import { products } from "../data/products";
 import type { Product } from "../data/products";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface AdminPanelProps {
-  // Props can be added here if needed in the future
-}
+type AdminPanelProps = object;
 
 const Admin: React.FC<AdminPanelProps> = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

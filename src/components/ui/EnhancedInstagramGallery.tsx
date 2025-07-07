@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Instagram,
   Heart,
@@ -7,12 +7,11 @@ import {
   Share2,
   ChevronLeft,
   ChevronRight,
-  Filter,
   Camera,
   ExternalLink,
   Play,
-  Pause
-} from 'lucide-react';
+  Pause,
+} from "lucide-react";
 
 interface InstagramPost {
   id: string;
@@ -49,119 +48,161 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
   postsToShow = 6,
   showStats = true,
   showCTA = true,
-  instagramHandle = '@cucinanostrard',
-  instagramUrl = 'https://www.instagram.com/cucinanostrard/?hl=en'
+  instagramHandle = "@cucinanostrard",
+  instagramUrl = "https://www.instagram.com/cucinanostrard/?hl=en",
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [selectedFilter, setSelectedFilter] = useState("all");
   const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
   const [isLoading, setIsLoading] = useState(true);
 
   // Sample Instagram posts data
   const instagramPosts: InstagramPost[] = [
     {
-      id: 'post-001',
-      imageUrl: '/images/instagram/chocolate-raspberry-tart.jpg',
-      thumbnailUrl: '/images/instagram/thumbs/chocolate-raspberry-tart-thumb.jpg',
-      caption: 'Proceso de decoración de un pastel de bodas 🎂✨ Cada detalle cuenta cuando se trata de hacer realidad los sueños de nuestros clientes. #PastelDeBodas #HechoConAmor #Cucinanostrard',
+      id: "post-001",
+      imageUrl: "/images/instagram/chocolate-raspberry-tart.jpg",
+      thumbnailUrl:
+        "/images/instagram/thumbs/chocolate-raspberry-tart-thumb.jpg",
+      caption:
+        "Proceso de decoración de un pastel de bodas 🎂✨ Cada detalle cuenta cuando se trata de hacer realidad los sueños de nuestros clientes. #PastelDeBodas #HechoConAmor #Cucinanostrard",
       likes: 203,
       comments: 45,
-      timestamp: new Date('2024-12-01'),
+      timestamp: new Date("2024-12-01"),
       postUrl: `${instagramUrl}/p/example1/`,
-      hashtags: ['#PastelDeBodas', '#HechoConAmor', '#Cucinanostrard'],
-      customerTag: '@cliente_feliz',
-      isVideo: false
+      hashtags: ["#PastelDeBodas", "#HechoConAmor", "#Cucinanostrard"],
+      customerTag: "@cliente_feliz",
+      isVideo: false,
     },
     {
-      id: 'post-002',
-      imageUrl: '/images/instagram/vanilla-caramel-macarons.jpg',
-      thumbnailUrl: '/images/instagram/thumbs/vanilla-caramel-macarons-thumb.jpg',
-      caption: 'Macarons frescos del día en colores pasteles 🌸 La técnica francesa en cada bocado. ¿Cuál es tu sabor favorito? #MacaronsFranceses #Artesanal #TecnicaFrancesa',
+      id: "post-002",
+      imageUrl: "/images/instagram/vanilla-caramel-macarons.jpg",
+      thumbnailUrl:
+        "/images/instagram/thumbs/vanilla-caramel-macarons-thumb.jpg",
+      caption:
+        "Macarons frescos del día en colores pasteles 🌸 La técnica francesa en cada bocado. ¿Cuál es tu sabor favorito? #MacaronsFranceses #Artesanal #TecnicaFrancesa",
       likes: 156,
       comments: 31,
-      timestamp: new Date('2024-11-28'),
+      timestamp: new Date("2024-11-28"),
       postUrl: `${instagramUrl}/p/example2/`,
-      hashtags: ['#MacaronsFranceses', '#Artesanal', '#TecnicaFrancesa'],
-      isVideo: false
+      hashtags: ["#MacaronsFranceses", "#Artesanal", "#TecnicaFrancesa"],
+      isVideo: false,
     },
     {
-      id: 'post-003',
-      imageUrl: '/images/instagram/berry-cheesecake.jpg',
-      thumbnailUrl: '/images/instagram/thumbs/berry-cheesecake-thumb.jpg',
-      caption: 'Cheesecake de frutos rojos que conquista corazones 💕 Cremoso, fresco y con el equilibrio perfecto de dulzura. #Cheesecake #FrutosRojos #PostreGourmet',
+      id: "post-003",
+      imageUrl: "/images/instagram/berry-cheesecake.jpg",
+      thumbnailUrl: "/images/instagram/thumbs/berry-cheesecake-thumb.jpg",
+      caption:
+        "Cheesecake de frutos rojos que conquista corazones 💕 Cremoso, fresco y con el equilibrio perfecto de dulzura. #Cheesecake #FrutosRojos #PostreGourmet",
       likes: 189,
       comments: 28,
-      timestamp: new Date('2024-11-25'),
+      timestamp: new Date("2024-11-25"),
       postUrl: `${instagramUrl}/p/example3/`,
-      hashtags: ['#Cheesecake', '#FrutosRojos', '#PostreGourmet'],
-      customerTag: '@maria_gonzalez',
-      isVideo: false
+      hashtags: ["#Cheesecake", "#FrutosRojos", "#PostreGourmet"],
+      customerTag: "@maria_gonzalez",
+      isVideo: false,
     },
     {
-      id: 'post-004',
-      imageUrl: '/images/instagram/decorated-cookies.jpg',
-      thumbnailUrl: '/images/instagram/thumbs/decorated-cookies-thumb.jpg',
-      caption: 'Galletas decoradas para baby shower 👶✨ Cada una pintada a mano con royal icing. Un dulce recuerdo para celebrar la llegada del bebé. #BabyShower #GalletasDecoradas #RoyalIcing',
+      id: "post-004",
+      imageUrl: "/images/instagram/decorated-cookies.jpg",
+      thumbnailUrl: "/images/instagram/thumbs/decorated-cookies-thumb.jpg",
+      caption:
+        "Galletas decoradas para baby shower 👶✨ Cada una pintada a mano con royal icing. Un dulce recuerdo para celebrar la llegada del bebé. #BabyShower #GalletasDecoradas #RoyalIcing",
       likes: 241,
       comments: 52,
-      timestamp: new Date('2024-11-22'),
+      timestamp: new Date("2024-11-22"),
       postUrl: `${instagramUrl}/p/example4/`,
-      hashtags: ['#BabyShower', '#GalletasDecoradas', '#RoyalIcing'],
+      hashtags: ["#BabyShower", "#GalletasDecoradas", "#RoyalIcing"],
       isVideo: true,
-      duration: '0:45'
+      duration: "0:45",
     },
     {
-      id: 'post-005',
-      imageUrl: '/images/instagram/strawberry-cupcakes.jpg',
-      thumbnailUrl: '/images/instagram/thumbs/strawberry-cupcakes-thumb.jpg',
-      caption: 'Cupcakes de fresa con buttercream de vainilla 🍓 Perfectos para cualquier celebración. El sabor del verano en cada bocado. #CupcakesFresa #Buttercream #SaborVerano',
+      id: "post-005",
+      imageUrl: "/images/instagram/strawberry-cupcakes.jpg",
+      thumbnailUrl: "/images/instagram/thumbs/strawberry-cupcakes-thumb.jpg",
+      caption:
+        "Cupcakes de fresa con buttercream de vainilla 🍓 Perfectos para cualquier celebración. El sabor del verano en cada bocado. #CupcakesFresa #Buttercream #SaborVerano",
       likes: 178,
       comments: 39,
-      timestamp: new Date('2024-11-20'),
+      timestamp: new Date("2024-11-20"),
       postUrl: `${instagramUrl}/p/example5/`,
-      hashtags: ['#CupcakesFresa', '#Buttercream', '#SaborVerano'],
-      customerTag: '@ana_sofia',
-      isVideo: false
+      hashtags: ["#CupcakesFresa", "#Buttercream", "#SaborVerano"],
+      customerTag: "@ana_sofia",
+      isVideo: false,
     },
     {
-      id: 'post-006',
-      imageUrl: '/images/instagram/buttercream-class.jpg',
-      thumbnailUrl: '/images/instagram/thumbs/buttercream-class-thumb.jpg',
-      caption: 'Detrás de cámaras: Preparando buttercream artesanal 🎨 La base de nuestras decoraciones más hermosas. #DetrasDelTelón #ButtercreamArtesanal #Proceso',
+      id: "post-006",
+      imageUrl: "/images/instagram/buttercream-class.jpg",
+      thumbnailUrl: "/images/instagram/thumbs/buttercream-class-thumb.jpg",
+      caption:
+        "Detrás de cámaras: Preparando buttercream artesanal 🎨 La base de nuestras decoraciones más hermosas. #DetrasDelTelón #ButtercreamArtesanal #Proceso",
       likes: 134,
       comments: 22,
-      timestamp: new Date('2024-11-18'),
+      timestamp: new Date("2024-11-18"),
       postUrl: `${instagramUrl}/p/example6/`,
-      hashtags: ['#DetrasDelTelón', '#ButtercreamArtesanal', '#Proceso'],
+      hashtags: ["#DetrasDelTelón", "#ButtercreamArtesanal", "#Proceso"],
       isVideo: true,
-      duration: '1:20'
-    }
+      duration: "1:20",
+    },
   ];
 
   const filters = [
-    { id: 'all', label: 'Todos', count: instagramPosts.length },
-    { id: 'tartas', label: 'Tartas', count: instagramPosts.filter(post => post.hashtags.some(tag => tag.includes('Pastel') || tag.includes('Tarta'))).length },
-    { id: 'macarons', label: 'Macarons', count: instagramPosts.filter(post => post.hashtags.some(tag => tag.includes('Macaron'))).length },
-    { id: 'cupcakes', label: 'Cupcakes', count: instagramPosts.filter(post => post.hashtags.some(tag => tag.includes('Cupcake'))).length },
-    { id: 'proceso', label: 'Proceso', count: instagramPosts.filter(post => post.hashtags.some(tag => tag.includes('Proceso') || tag.includes('DetrasDelTelón'))).length }
+    { id: "all", label: "Todos", count: instagramPosts.length },
+    {
+      id: "tartas",
+      label: "Tartas",
+      count: instagramPosts.filter((post) =>
+        post.hashtags.some(
+          (tag) => tag.includes("Pastel") || tag.includes("Tarta"),
+        ),
+      ).length,
+    },
+    {
+      id: "macarons",
+      label: "Macarons",
+      count: instagramPosts.filter((post) =>
+        post.hashtags.some((tag) => tag.includes("Macaron")),
+      ).length,
+    },
+    {
+      id: "cupcakes",
+      label: "Cupcakes",
+      count: instagramPosts.filter((post) =>
+        post.hashtags.some((tag) => tag.includes("Cupcake")),
+      ).length,
+    },
+    {
+      id: "proceso",
+      label: "Proceso",
+      count: instagramPosts.filter((post) =>
+        post.hashtags.some(
+          (tag) => tag.includes("Proceso") || tag.includes("DetrasDelTelón"),
+        ),
+      ).length,
+    },
   ];
 
-  const filteredPosts = selectedFilter === 'all'
-    ? instagramPosts
-    : instagramPosts.filter(post => {
-        switch (selectedFilter) {
-          case 'tartas':
-            return post.hashtags.some(tag => tag.includes('Pastel') || tag.includes('Tarta'));
-          case 'macarons':
-            return post.hashtags.some(tag => tag.includes('Macaron'));
-          case 'cupcakes':
-            return post.hashtags.some(tag => tag.includes('Cupcake'));
-          case 'proceso':
-            return post.hashtags.some(tag => tag.includes('Proceso') || tag.includes('DetrasDelTelón'));
-          default:
-            return true;
-        }
-      });
+  const filteredPosts =
+    selectedFilter === "all"
+      ? instagramPosts
+      : instagramPosts.filter((post) => {
+          switch (selectedFilter) {
+            case "tartas":
+              return post.hashtags.some(
+                (tag) => tag.includes("Pastel") || tag.includes("Tarta"),
+              );
+            case "macarons":
+              return post.hashtags.some((tag) => tag.includes("Macaron"));
+            case "cupcakes":
+              return post.hashtags.some((tag) => tag.includes("Cupcake"));
+            case "proceso":
+              return post.hashtags.some(
+                (tag) =>
+                  tag.includes("Proceso") || tag.includes("DetrasDelTelón"),
+              );
+            default:
+              return true;
+          }
+        });
 
   const postsToDisplay = filteredPosts.slice(0, postsToShow);
 
@@ -187,7 +228,9 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + postsToDisplay.length) % postsToDisplay.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + postsToDisplay.length) % postsToDisplay.length,
+    );
   };
 
   const goToSlide = (index: number) => {
@@ -201,15 +244,17 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
 
   const formatTimeAgo = (date: Date) => {
     const now = new Date();
-    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60));
+    const diffInHours = Math.floor(
+      (now.getTime() - date.getTime()) / (1000 * 60 * 60),
+    );
 
-    if (diffInHours < 1) return 'Hace menos de 1h';
+    if (diffInHours < 1) return "Hace menos de 1h";
     if (diffInHours < 24) return `Hace ${diffInHours}h`;
 
     const diffInDays = Math.floor(diffInHours / 24);
     if (diffInDays < 7) return `Hace ${diffInDays}d`;
 
-    return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+    return date.toLocaleDateString("es-ES", { day: "numeric", month: "short" });
   };
 
   const currentPost = postsToDisplay[currentSlide];
@@ -258,7 +303,8 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
               <div className="w-24 h-px bg-sage/40 mx-auto mb-8"></div>
 
               <p className="text-lg text-dark-cocoa/70 leading-relaxed font-karla max-w-2xl mx-auto">
-                Descubre el proceso detrás de cada creación y los momentos especiales que hacemos posibles.
+                Descubre el proceso detrás de cada creación y los momentos
+                especiales que hacemos posibles.
               </p>
             </motion.div>
           </div>
@@ -278,16 +324,18 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
                 onClick={() => handleFilterChange(filter.id)}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
                   selectedFilter === filter.id
-                    ? 'bg-sage text-white shadow-lg'
-                    : 'bg-white text-dark-cocoa hover:bg-sage/10 border border-gray-200'
+                    ? "bg-sage text-white shadow-lg"
+                    : "bg-white text-dark-cocoa hover:bg-sage/10 border border-gray-200"
                 }`}
               >
                 <span className="font-karla text-sm">{filter.label}</span>
-                <span className={`text-xs px-2 py-1 rounded-full ${
-                  selectedFilter === filter.id
-                    ? 'bg-white/20 text-white'
-                    : 'bg-gray-100 text-gray-600'
-                }`}>
+                <span
+                  className={`text-xs px-2 py-1 rounded-full ${
+                    selectedFilter === filter.id
+                      ? "bg-white/20 text-white"
+                      : "bg-gray-100 text-gray-600"
+                  }`}
+                >
                   {filter.count}
                 </span>
               </button>
@@ -313,8 +361,12 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
                   <Instagram className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-karla font-semibold text-dark-cocoa">{instagramHandle}</h3>
-                  <p className="text-sm text-dark-cocoa/60">Santo Domingo, RD</p>
+                  <h3 className="font-karla font-semibold text-dark-cocoa">
+                    {instagramHandle}
+                  </h3>
+                  <p className="text-sm text-dark-cocoa/60">
+                    Santo Domingo, RD
+                  </p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
@@ -397,7 +449,9 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
                       className="flex items-center space-x-1 text-red-500 hover:text-red-600 transition-colors"
                     >
                       <Heart className="w-6 h-6" />
-                      <span className="font-karla text-sm">{currentPost.likes}</span>
+                      <span className="font-karla text-sm">
+                        {currentPost.likes}
+                      </span>
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.1 }}
@@ -405,7 +459,9 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
                       className="flex items-center space-x-1 text-dark-cocoa hover:text-sage transition-colors"
                     >
                       <MessageCircle className="w-6 h-6" />
-                      <span className="font-karla text-sm">{currentPost.comments}</span>
+                      <span className="font-karla text-sm">
+                        {currentPost.comments}
+                      </span>
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.1 }}
@@ -421,7 +477,8 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
                 </div>
 
                 <p className="text-dark-cocoa font-karla leading-relaxed mb-4">
-                  <span className="font-semibold">cucinanostrard</span> {currentPost.caption}
+                  <span className="font-semibold">cucinanostrard</span>{" "}
+                  {currentPost.caption}
                 </p>
 
                 {currentPost.customerTag && (
@@ -453,8 +510,8 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
                   onClick={() => goToSlide(index)}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === currentSlide
-                      ? 'bg-sage w-6'
-                      : 'bg-dark-cocoa/30 hover:bg-sage/50'
+                      ? "bg-sage w-6"
+                      : "bg-dark-cocoa/30 hover:bg-sage/50"
                   }`}
                 />
               ))}
@@ -472,19 +529,29 @@ const EnhancedInstagramGallery: React.FC<InstagramGalleryProps> = ({
           >
             <div className="text-center">
               <div className="text-2xl font-cormorant text-dark-cocoa mb-1">
-                {instagramPosts.reduce((total, post) => total + post.likes, 0).toLocaleString()}
+                {instagramPosts
+                  .reduce((total, post) => total + post.likes, 0)
+                  .toLocaleString()}
               </div>
-              <div className="text-sm text-dark-cocoa/70 font-karla">Me gusta</div>
+              <div className="text-sm text-dark-cocoa/70 font-karla">
+                Me gusta
+              </div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-cormorant text-dark-cocoa mb-1">
                 {instagramPosts.length}
               </div>
-              <div className="text-sm text-dark-cocoa/70 font-karla">Publicaciones</div>
+              <div className="text-sm text-dark-cocoa/70 font-karla">
+                Publicaciones
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-cormorant text-dark-cocoa mb-1">2.5K</div>
-              <div className="text-sm text-dark-cocoa/70 font-karla">Seguidores</div>
+              <div className="text-2xl font-cormorant text-dark-cocoa mb-1">
+                2.5K
+              </div>
+              <div className="text-sm text-dark-cocoa/70 font-karla">
+                Seguidores
+              </div>
             </div>
           </motion.div>
         )}

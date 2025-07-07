@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Shield,
   Award,
@@ -10,14 +10,11 @@ import {
   Star,
   CheckCircle,
   Phone,
-  Mail,
   Calendar,
-  Camera,
-  ThumbsUp,
   Truck,
   CreditCard,
-  Lock
-} from 'lucide-react';
+  Lock,
+} from "lucide-react";
 
 interface Certification {
   id: string;
@@ -59,164 +56,173 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
   showLocalReviews = true,
   showBusinessMetrics = true,
   showSecurityFeatures = true,
-  showLocalPresence = true
+  showLocalPresence = true,
 }) => {
-  const [selectedTab, setSelectedTab] = useState<'reviews' | 'certifications' | 'metrics'>('reviews');
+  const [selectedTab, setSelectedTab] = useState<
+    "reviews" | "certifications" | "metrics"
+  >("reviews");
 
   const certifications: Certification[] = [
     {
-      id: '1',
-      name: 'Certificación en Manipulación de Alimentos',
-      issuer: 'Secretaría de Salud',
-      year: '2024',
-      description: 'Certificación oficial para manejo seguro de alimentos y buenas prácticas de higiene'
+      id: "1",
+      name: "Certificación en Manipulación de Alimentos",
+      issuer: "Secretaría de Salud",
+      year: "2024",
+      description:
+        "Certificación oficial para manejo seguro de alimentos y buenas prácticas de higiene",
     },
     {
-      id: '2',
-      name: 'Registro Sanitario',
-      issuer: 'COFEPRIS',
-      year: '2024',
-      description: 'Establecimiento registrado y autorizado para elaboración de alimentos'
+      id: "2",
+      name: "Registro Sanitario",
+      issuer: "COFEPRIS",
+      year: "2024",
+      description:
+        "Establecimiento registrado y autorizado para elaboración de alimentos",
     },
     {
-      id: '3',
-      name: 'Certificación Artesanal',
-      issuer: 'Cámara de Comercio Local',
-      year: '2023',
-      description: 'Reconocimiento como negocio artesanal de la comunidad'
+      id: "3",
+      name: "Certificación Artesanal",
+      issuer: "Cámara de Comercio Local",
+      year: "2023",
+      description: "Reconocimiento como negocio artesanal de la comunidad",
     },
     {
-      id: '4',
-      name: 'Empresa Socialmente Responsable',
-      issuer: 'Ayuntamiento Municipal',
-      year: '2024',
-      description: 'Reconocimiento por contribución al desarrollo local y prácticas sustentables'
-    }
+      id: "4",
+      name: "Empresa Socialmente Responsable",
+      issuer: "Ayuntamiento Municipal",
+      year: "2024",
+      description:
+        "Reconocimiento por contribución al desarrollo local y prácticas sustentables",
+    },
   ];
 
   const localReviews: LocalReview[] = [
     {
-      id: '1',
-      customerName: 'María González',
+      id: "1",
+      customerName: "María González",
       rating: 5,
-      review: 'Increíble atención y sabor! Hice el pedido para el cumpleaños de mi hija y quedó perfecto. La tarta de chocolate estaba deliciosa y la decoración superó mis expectativas. Definitivamente volveré a pedirles.',
-      date: '2024-01-15',
-      occasion: 'Cumpleaños',
+      review:
+        "Increíble atención y sabor! Hice el pedido para el cumpleaños de mi hija y quedó perfecto. La tarta de chocolate estaba deliciosa y la decoración superó mis expectativas. Definitivamente volveré a pedirles.",
+      date: "2024-01-15",
+      occasion: "Cumpleaños",
       verified: true,
-      photos: ['/api/placeholder/200/150', '/api/placeholder/200/150']
+      photos: ["/api/placeholder/200/150", "/api/placeholder/200/150"],
     },
     {
-      id: '2',
-      customerName: 'Carlos Ramírez',
+      id: "2",
+      customerName: "Carlos Ramírez",
       rating: 5,
-      review: 'Los macarons más ricos que he probado en la ciudad. Pedí una caja para mi aniversario y mi esposa quedó encantada. La calidad es excelente y el servicio muy profesional.',
-      date: '2024-01-10',
-      occasion: 'Aniversario',
-      verified: true
+      review:
+        "Los macarons más ricos que he probado en la ciudad. Pedí una caja para mi aniversario y mi esposa quedó encantada. La calidad es excelente y el servicio muy profesional.",
+      date: "2024-01-10",
+      occasion: "Aniversario",
+      verified: true,
     },
     {
-      id: '3',
-      customerName: 'Ana Sofía López',
+      id: "3",
+      customerName: "Ana Sofía López",
       rating: 5,
-      review: 'Excelente servicio desde el primer contacto por WhatsApp. Me ayudaron a elegir el postre perfecto para mi evento corporativo. Todos los invitados preguntaron quién había hecho los cupcakes!',
-      date: '2024-01-08',
-      occasion: 'Evento Corporativo',
-      verified: true
+      review:
+        "Excelente servicio desde el primer contacto por WhatsApp. Me ayudaron a elegir el postre perfecto para mi evento corporativo. Todos los invitados preguntaron quién había hecho los cupcakes!",
+      date: "2024-01-08",
+      occasion: "Evento Corporativo",
+      verified: true,
     },
     {
-      id: '4',
-      customerName: 'Roberto Mendoza',
+      id: "4",
+      customerName: "Roberto Mendoza",
       rating: 5,
-      review: 'La mejor repostería de la zona! He pedido varias veces y siempre superan mis expectativas. Los ingredientes se sienten frescos y la presentación es impecable. Muy recomendado!',
-      date: '2024-01-05',
-      occasion: 'Pedido Regular',
-      verified: true
-    }
+      review:
+        "La mejor repostería de la zona! He pedido varias veces y siempre superan mis expectativas. Los ingredientes se sienten frescos y la presentación es impecable. Muy recomendado!",
+      date: "2024-01-05",
+      occasion: "Pedido Regular",
+      verified: true,
+    },
   ];
 
   const businessMetrics: BusinessMetric[] = [
     {
-      label: 'Años de Experiencia',
-      value: '8+',
+      label: "Años de Experiencia",
+      value: "8+",
       icon: <Calendar className="w-6 h-6" />,
-      description: 'Creando momentos dulces desde 2016'
+      description: "Creando momentos dulces desde 2016",
     },
     {
-      label: 'Clientes Satisfechos',
-      value: '500+',
+      label: "Clientes Satisfechos",
+      value: "500+",
       icon: <Users className="w-6 h-6" />,
-      description: 'Familias que confían en nosotros'
+      description: "Familias que confían en nosotros",
     },
     {
-      label: 'Pedidos Completados',
-      value: '1,200+',
+      label: "Pedidos Completados",
+      value: "1,200+",
       icon: <CheckCircle className="w-6 h-6" />,
-      description: 'Celebraciones hechas realidad'
+      description: "Celebraciones hechas realidad",
     },
     {
-      label: 'Tiempo de Respuesta',
-      value: '< 30min',
+      label: "Tiempo de Respuesta",
+      value: "< 30min",
       icon: <Clock className="w-6 h-6" />,
-      description: 'Respuesta promedio en WhatsApp'
+      description: "Respuesta promedio en WhatsApp",
     },
     {
-      label: 'Calificación Promedio',
-      value: '4.9/5',
+      label: "Calificación Promedio",
+      value: "4.9/5",
       icon: <Star className="w-6 h-6" />,
-      description: 'Basado en reseñas verificadas'
+      description: "Basado en reseñas verificadas",
     },
     {
-      label: 'Entregas Puntuales',
-      value: '98%',
+      label: "Entregas Puntuales",
+      value: "98%",
       icon: <Truck className="w-6 h-6" />,
-      description: 'Cumplimos con los tiempos acordados'
-    }
+      description: "Cumplimos con los tiempos acordados",
+    },
   ];
 
   const securityFeatures = [
     {
       icon: <Shield className="w-5 h-5" />,
-      title: 'Proceso Verificado',
-      description: 'Cada pedido se confirma por WhatsApp con detalles claros'
+      title: "Proceso Verificado",
+      description: "Cada pedido se confirma por WhatsApp con detalles claros",
     },
     {
       icon: <Lock className="w-5 h-5" />,
-      title: 'Información Segura',
-      description: 'Tus datos personales están protegidos y no se comparten'
+      title: "Información Segura",
+      description: "Tus datos personales están protegidos y no se comparten",
     },
     {
       icon: <CheckCircle className="w-5 h-5" />,
-      title: 'Garantía de Calidad',
-      description: 'Si no estás satisfecho, trabajamos para solucionarlo'
+      title: "Garantía de Calidad",
+      description: "Si no estás satisfecho, trabajamos para solucionarlo",
     },
     {
       icon: <CreditCard className="w-5 h-5" />,
-      title: 'Pago Seguro',
-      description: 'Efectivo o transferencia bancaria verificada'
-    }
+      title: "Pago Seguro",
+      description: "Efectivo o transferencia bancaria verificada",
+    },
   ];
 
   const localPresenceFeatures = [
     {
       icon: <MapPin className="w-5 h-5" />,
-      title: 'Negocio Local',
-      description: 'Ubicados en el corazón de la comunidad desde 2016'
+      title: "Negocio Local",
+      description: "Ubicados en el corazón de la comunidad desde 2016",
     },
     {
       icon: <Users className="w-5 h-5" />,
-      title: 'Conocidos en la Zona',
-      description: 'Recomendados por vecinos y amigos'
+      title: "Conocidos en la Zona",
+      description: "Recomendados por vecinos y amigos",
     },
     {
       icon: <Truck className="w-5 h-5" />,
-      title: 'Entrega Local',
-      description: 'Conocemos cada rincón de la ciudad para entregas puntuales'
+      title: "Entrega Local",
+      description: "Conocemos cada rincón de la ciudad para entregas puntuales",
     },
     {
       icon: <Heart className="w-5 h-5" />,
-      title: 'Compromiso Comunitario',
-      description: 'Apoyamos eventos locales y causas benéficas'
-    }
+      title: "Compromiso Comunitario",
+      description: "Apoyamos eventos locales y causas benéficas",
+    },
   ];
 
   const renderStars = (rating: number) => {
@@ -224,7 +230,7 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
       <Star
         key={i}
         className={`w-4 h-4 ${
-          i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
+          i < rating ? "text-yellow-400 fill-current" : "text-gray-300"
         }`}
       />
     ));
@@ -240,11 +246,13 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
           className="flex items-center justify-center space-x-3 mb-4"
         >
           <Shield className="w-8 h-8 text-sage" />
-          <h2 className="text-3xl font-bold text-gray-900">Confianza y Calidad</h2>
+          <h2 className="text-3xl font-bold text-gray-900">
+            Confianza y Calidad
+          </h2>
         </motion.div>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Tu tranquilidad es nuestra prioridad. Conoce por qué miles de familias confían en nosotros
-          para sus momentos más especiales.
+          Tu tranquilidad es nuestra prioridad. Conoce por qué miles de familias
+          confían en nosotros para sus momentos más especiales.
         </p>
       </div>
 
@@ -289,17 +297,29 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
       <div className="flex justify-center">
         <div className="bg-gray-100 rounded-lg p-1 flex space-x-1">
           {[
-            { id: 'reviews', label: 'Reseñas', icon: <Star className="w-4 h-4" /> },
-            { id: 'certifications', label: 'Certificaciones', icon: <Award className="w-4 h-4" /> },
-            { id: 'metrics', label: 'Confianza', icon: <Shield className="w-4 h-4" /> }
+            {
+              id: "reviews",
+              label: "Reseñas",
+              icon: <Star className="w-4 h-4" />,
+            },
+            {
+              id: "certifications",
+              label: "Certificaciones",
+              icon: <Award className="w-4 h-4" />,
+            },
+            {
+              id: "metrics",
+              label: "Confianza",
+              icon: <Shield className="w-4 h-4" />,
+            },
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setSelectedTab(tab.id as any)}
+              onClick={() => setSelectedTab(tab.id)}
               className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                 selectedTab === tab.id
-                  ? 'bg-white shadow-sm text-sage'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? "bg-white shadow-sm text-sage"
+                  : "text-gray-600 hover:text-gray-900"
               }`}
             >
               {tab.icon}
@@ -310,7 +330,7 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
       </div>
 
       {/* Reviews Tab */}
-      {selectedTab === 'reviews' && showLocalReviews && (
+      {selectedTab === "reviews" && showLocalReviews && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -320,7 +340,9 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Lo que Dicen Nuestros Clientes
             </h3>
-            <p className="text-gray-600">Reseñas reales de familias de nuestra comunidad</p>
+            <p className="text-gray-600">
+              Reseñas reales de familias de nuestra comunidad
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -334,9 +356,11 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <div className="flex items-center space-x-2 mb-1">
-                      <h4 className="font-semibold text-gray-900">{review.customerName}</h4>
+                      <h4 className="font-semibold text-gray-900">
+                        {review.customerName}
+                      </h4>
                       {review.verified && (
-                        <CheckCircle className="w-4 h-4 text-green-500" title="Cliente verificado" />
+                        <CheckCircle className="w-4 h-4 text-green-500" />
                       )}
                     </div>
                     <div className="flex items-center space-x-2">
@@ -344,16 +368,18 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
                         {renderStars(review.rating)}
                       </div>
                       <span className="text-sm text-gray-500">•</span>
-                      <span className="text-sm text-gray-500">{review.occasion}</span>
+                      <span className="text-sm text-gray-500">
+                        {review.occasion}
+                      </span>
                     </div>
                   </div>
                   <span className="text-xs text-gray-400">
-                    {new Date(review.date).toLocaleDateString('es-ES')}
+                    {new Date(review.date).toLocaleDateString("es-ES")}
                   </span>
                 </div>
 
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  "{review.review}"
+                  &ldquo;{review.review}&rdquo;
                 </p>
 
                 {review.photos && review.photos.length > 0 && (
@@ -381,7 +407,7 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
       )}
 
       {/* Certifications Tab */}
-      {selectedTab === 'certifications' && showCertifications && (
+      {selectedTab === "certifications" && showCertifications && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -391,7 +417,9 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Certificaciones y Reconocimientos
             </h3>
-            <p className="text-gray-600">Avalados por las autoridades competentes</p>
+            <p className="text-gray-600">
+              Avalados por las autoridades competentes
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -407,9 +435,12 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
                     <Award className="w-8 h-8 text-sage" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-semibold text-gray-900 mb-1">{cert.name}</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">
+                      {cert.name}
+                    </h4>
                     <p className="text-sm text-gray-600 mb-2">
-                      Emitido por: <span className="font-medium">{cert.issuer}</span>
+                      Emitido por:{" "}
+                      <span className="font-medium">{cert.issuer}</span>
                     </p>
                     <p className="text-sm text-gray-600 mb-2">
                       Año: <span className="font-medium">{cert.year}</span>
@@ -426,7 +457,7 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
       )}
 
       {/* Trust Metrics Tab */}
-      {selectedTab === 'metrics' && (
+      {selectedTab === "metrics" && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -451,8 +482,12 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
                         {feature.icon}
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">{feature.title}</h4>
-                        <p className="text-sm text-gray-600">{feature.description}</p>
+                        <h4 className="font-semibold text-gray-900 mb-1">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {feature.description}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -480,8 +515,12 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
                         {feature.icon}
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">{feature.title}</h4>
-                        <p className="text-sm text-gray-600">{feature.description}</p>
+                        <h4 className="font-semibold text-gray-900 mb-1">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {feature.description}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -512,7 +551,9 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
               <Phone className="w-8 h-8" />
             </div>
             <h4 className="font-semibold mb-1">WhatsApp</h4>
-            <p className="text-sm text-sage-100 mb-2">Respuesta en menos de 30 min</p>
+            <p className="text-sm text-sage-100 mb-2">
+              Respuesta en menos de 30 min
+            </p>
             <button className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm transition-colors">
               Enviar Mensaje
             </button>
@@ -523,7 +564,9 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
               <MapPin className="w-8 h-8" />
             </div>
             <h4 className="font-semibold mb-1">Ubicación</h4>
-            <p className="text-sm text-sage-100 mb-2">Zona céntrica de la ciudad</p>
+            <p className="text-sm text-sage-100 mb-2">
+              Zona céntrica de la ciudad
+            </p>
             <button className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm transition-colors">
               Ver Mapa
             </button>
@@ -534,7 +577,9 @@ export const TrustSignals: React.FC<TrustSignalsProps> = ({
               <Clock className="w-8 h-8" />
             </div>
             <h4 className="font-semibold mb-1">Horarios</h4>
-            <p className="text-sm text-sage-100 mb-2">Lun-Sáb: 9:00 AM - 7:00 PM</p>
+            <p className="text-sm text-sage-100 mb-2">
+              Lun-Sáb: 9:00 AM - 7:00 PM
+            </p>
             <button className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm transition-colors">
               Agendar Cita
             </button>

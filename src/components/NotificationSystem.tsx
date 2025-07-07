@@ -102,7 +102,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
         newNotification.duration > 0
       ) {
         setTimeout(() => {
-          removeNotification(id);
+          setNotifications((prev) => prev.filter((n) => n.id !== id));
         }, newNotification.duration);
       }
 
@@ -456,7 +456,7 @@ export const useDessertNotifications = () => {
           label: "Entiendo",
           onClick: () => {
             localStorage.setItem("cookies-accepted", "true");
-            notifications.removeNotification;
+            notifications.removeNotification();
           },
         },
       },
